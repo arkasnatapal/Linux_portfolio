@@ -86,17 +86,17 @@ export const FirefoxApp: React.FC = () => {
           className="flex items-center gap-1 hover:text-white cursor-pointer"
         >
           <span>💾</span>
-          <span>Tapeout Projects</span>
+          <span>Verilog Projects</span>
         </button>
         <button
           onClick={() => {
-            setInputUrl('https://skywater-pdk.readthedocs.io');
+            setInputUrl('https://docs.xilinx.com');
             setPage('docs');
           }}
           className="flex items-center gap-1 hover:text-white cursor-pointer"
         >
           <span>📖</span>
-          <span>Sky130 PDK Docs</span>
+          <span>Vivado Docs</span>
         </button>
       </div>
 
@@ -125,17 +125,17 @@ export const FirefoxApp: React.FC = () => {
                 <div className="p-4 rounded-xl bg-black/40 border border-white/10 space-y-1.5">
                   <span className="text-xl">⚙️</span>
                   <div className="font-bold text-sm text-white">RTL Microarchitecture</div>
-                  <p className="text-xs text-slate-400">Pipelined RV32I, dynamic branch predictor, AXI4 bus crossbar & FIFOs.</p>
+                  <p className="text-xs text-slate-400">SPI Master Controller, UART TX/RX, PWM Generator, Synchronous FIFO.</p>
                 </div>
                 <div className="p-4 rounded-xl bg-black/40 border border-white/10 space-y-1.5">
                   <span className="text-xl">🧪</span>
                   <div className="font-bold text-sm text-white">Functional Verification</div>
-                  <p className="text-xs text-slate-400">99.4% coverage UVM environments, concurrent SVA protocol checkers.</p>
+                  <p className="text-xs text-slate-400">Exhaustive testbenches, edge-case simulation with Xilinx Vivado & GTKWave.</p>
                 </div>
                 <div className="p-4 rounded-xl bg-black/40 border border-white/10 space-y-1.5">
                   <span className="text-xl">💎</span>
-                  <div className="font-bold text-sm text-white">Physical Signoff</div>
-                  <p className="text-xs text-slate-400">Zero-error Magic DRC & Netgen LVS tapeouts on SkyWater 130nm CMOS.</p>
+                  <div className="font-bold text-sm text-white">Digital Electronics & Tools</div>
+                  <p className="text-xs text-slate-400">Verilog HDL, Xilinx Vivado, Icarus Verilog, Logic Design & RTL-to-GDSII flow.</p>
                 </div>
               </div>
             </>
@@ -144,7 +144,7 @@ export const FirefoxApp: React.FC = () => {
           {page === 'projects' && (
             <div className="space-y-4">
               <h2 className="text-lg font-bold text-white border-b border-white/10 pb-2">
-                Published Silicon Tapeouts & Designs
+                Synthesizable Verilog Hardware Designs
               </h2>
               {PORTFOLIO_DATA.projects.map((proj) => (
                 <div key={proj.id} className="p-4 rounded-xl bg-black/40 border border-white/10 space-y-2">
@@ -160,14 +160,14 @@ export const FirefoxApp: React.FC = () => {
 
           {page === 'docs' && (
             <div className="p-5 rounded-xl bg-black/40 border border-white/10 space-y-3 font-mono text-xs">
-              <h2 className="text-base font-bold text-cyan-400 font-sans">SkyWater 130nm Open PDK Documentation</h2>
+              <h2 className="text-base font-bold text-cyan-400 font-sans">AMD Xilinx Vivado & Verilog HDL Reference</h2>
               <p className="text-slate-300">
-                The SkyWater Open Source PDK is a collaboration between Google and SkyWater Technology to provide a fully open source Process Design Kit (PDK).
+                Industry-standard FPGA design, simulation, and synthesis suite for Verilog HDL IP design.
               </p>
               <div className="bg-slate-900/60 p-3 rounded space-y-1 text-slate-400">
-                <div>• Technology: 130nm CMOS 1P5M (1 Poly, 5 Metal)</div>
-                <div>• Standard Cells: sky130_fd_sc_hd (High Density)</div>
-                <div>• Supply Voltage: 1.8V Core / 3.3V I/O</div>
+                <div>• Supported Languages: Verilog HDL (IEEE 1364), SystemVerilog</div>
+                <div>• Verification Tools: Vivado Simulator (xsim), Icarus Verilog (iverilog), GTKWave</div>
+                <div>• Target Architectures: Xilinx 7-Series (Artix-7, Kintex-7), UltraScale+</div>
               </div>
             </div>
           )}

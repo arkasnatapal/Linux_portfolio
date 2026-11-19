@@ -36,12 +36,12 @@ export const WelcomeTourModal: React.FC<WelcomeTourModalProps> = ({ isOpen, onCl
       content: (
         <div className="space-y-3 text-slate-300 text-xs leading-relaxed">
           <p>
-            Welcome to the interactive portfolio and virtual workstation of <strong className="text-white">Arka Bhattacharya</strong>, a Digital VLSI Engineer specializing in RTL Microarchitecture, Functional Verification, and Physical Signoff.
+            Welcome to the interactive portfolio and virtual workstation of <strong className="text-white">Arkasnata Pal</strong>, a Digital VLSI Engineer specializing in Verilog HDL, RTL Design & Verification, FPGA Development, and Digital Systems.
           </p>
           <div className="p-3 rounded-xl bg-black/40 border border-white/10 space-y-1.5 font-mono text-[11px]">
-            <div className="text-emerald-400 font-bold">● System: Ubuntu 24.04 LTS (x86_64 / RISC-V)</div>
-            <div className="text-cyan-300">• Tagline: "From RTL to GDSII."</div>
-            <div className="text-amber-300">• Architecture: RV32I Pipelined Core + SkyWater 130nm CMOS</div>
+            <div className="text-emerald-400 font-bold">● System: Ubuntu 24.04 LTS (x86_64 / FPGA)</div>
+            <div className="text-cyan-300">• Education: B.Tech ECE, Jalpaiguri Government Engineering College</div>
+            <div className="text-amber-300">• Achievements: SIH 2024 Finalist &bull; NPTEL Elite (IIT Guwahati)</div>
           </div>
           <p className="text-slate-400">
             This machine is designed to look, feel, and function like an authentic Ubuntu desktop environment running directly inside your browser.
@@ -66,7 +66,7 @@ export const WelcomeTourModal: React.FC<WelcomeTourModalProps> = ({ isOpen, onCl
             </li>
             <li className="flex items-start gap-2">
               <span className="text-[#ea4335] text-base leading-none">⚡</span>
-              <span><strong>Quick Bookmarks:</strong> Instant bookmarks for Arka's Portfolio, GitHub repositories, and SkyWater 130nm PDK specifications.</span>
+              <span><strong>Quick Bookmarks:</strong> Instant bookmarks for Arkasnata's Portfolio, GitHub repositories, and Digital VLSI resources.</span>
             </li>
           </ul>
         </div>

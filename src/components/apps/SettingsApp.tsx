@@ -104,15 +104,15 @@ export const SettingsApp: React.FC<SettingsAppProps> = ({
                 </div>
                 <div className="p-3 flex justify-between">
                   <span className={theme === 'light' ? 'text-slate-600' : 'text-slate-400'}>Processor:</span>
-                  <span className={`font-mono ${theme === 'light' ? 'text-slate-900 font-semibold' : 'text-white'}`}>AMD EPYC 9654 96-Core (192 vCPUs)</span>
+                  <span className={`font-mono ${theme === 'light' ? 'text-slate-900 font-semibold' : 'text-white'}`}>VLSI Engineering Workstation (x86_64)</span>
                 </div>
                 <div className="p-3 flex justify-between">
                   <span className={theme === 'light' ? 'text-slate-600' : 'text-slate-400'}>Memory:</span>
-                  <span className={`font-mono ${theme === 'light' ? 'text-slate-900 font-semibold' : 'text-white'}`}>128.0 GiB ECC DDR5</span>
+                  <span className={`font-mono ${theme === 'light' ? 'text-slate-900 font-semibold' : 'text-white'}`}>64.0 GiB High-Speed RAM</span>
                 </div>
                 <div className="p-3 flex justify-between">
-                  <span className={theme === 'light' ? 'text-slate-600' : 'text-slate-400'}>EDA Silicon PDK:</span>
-                  <span className="font-mono text-cyan-600 font-bold">SkyWater Sky130A</span>
+                  <span className={theme === 'light' ? 'text-slate-600' : 'text-slate-400'}>EDA Core Tool:</span>
+                  <span className="font-mono text-cyan-600 font-bold">Xilinx Vivado / Verilog HDL</span>
                 </div>
                 <div className="p-3 flex justify-between">
                   <span className={theme === 'light' ? 'text-slate-600' : 'text-slate-400'}>Windowing System:</span>

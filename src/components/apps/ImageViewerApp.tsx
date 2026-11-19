@@ -35,7 +35,7 @@ export const ImageViewerApp: React.FC = () => {
               activeDiagram === 'flow' ? 'bg-[#e95420] text-white font-medium' : 'hover:bg-white/10 text-slate-300'
             }`}
           >
-            ASIC Pipeline
+            VLSI Flow
           </button>
         </div>
       </div>

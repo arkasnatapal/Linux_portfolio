@@ -318,14 +318,21 @@ export const GoogleChromeApp: React.FC = () => {
           className="flex items-center gap-1 hover:text-white cursor-pointer hover:bg-white/5 px-2 py-0.5 rounded transition-colors shrink-0"
         >
           <span>🐙</span>
-          <span>GitHub (arka-vlsi)</span>
+          <span>GitHub</span>
         </button>
         <button
-          onClick={() => handleNavigate('https://skywater-pdk.readthedocs.io')}
+          onClick={() => handleNavigate('https://linkedin.com/in/arkasnata-pal-6a3682276')}
           className="flex items-center gap-1 hover:text-white cursor-pointer hover:bg-white/5 px-2 py-0.5 rounded transition-colors shrink-0"
         >
-          <span>📖</span>
-          <span>SkyWater 130nm PDK</span>
+          <span>💼</span>
+          <span>LinkedIn</span>
+        </button>
+        <button
+          onClick={() => handleNavigate('https://docs.xilinx.com')}
+          className="flex items-center gap-1 hover:text-white cursor-pointer hover:bg-white/5 px-2 py-0.5 rounded transition-colors shrink-0"
+        >
+          <span>📘</span>
+          <span>Vivado Docs</span>
         </button>
         <button
           onClick={() => handleNavigate('https://en.wikipedia.org/wiki/Very_Large_Scale_Integration')}
@@ -390,7 +397,7 @@ export const GoogleChromeApp: React.FC = () => {
               {[
                 { name: 'ARKA Portfolio', url: 'https://arka-vlsi.dev', icon: '⚡', color: 'bg-purple-900/60' },
                 { name: 'GitHub', url: 'https://github.com/arka-vlsi', icon: '🐙', color: 'bg-zinc-800' },
-                { name: 'Sky130 PDK', url: 'https://skywater-pdk.readthedocs.io', icon: '📘', color: 'bg-blue-900/60' },
+                { name: 'LinkedIn', url: 'https://linkedin.com/in/arkasnata-pal-6a3682276', icon: '💼', color: 'bg-blue-900/60' },
                 { name: 'VLSI Wiki', url: 'https://en.wikipedia.org/wiki/Very_Large_Scale_Integration', icon: '🌐', color: 'bg-emerald-900/60' },
               ].map(tile => (
                 <button
@@ -432,10 +439,10 @@ export const GoogleChromeApp: React.FC = () => {
                 </p>
               </div>
 
-              {/* Tapeout Projects Showcase */}
+              {/* Real Verilog Projects Showcase */}
               <div className="space-y-3">
                 <h2 className="text-sm font-bold text-white uppercase tracking-wider">
-                  Silicon Tapeouts & Architecture
+                  Verilog HDL Hardware Projects
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   {PORTFOLIO_DATA.projects.map(p => (

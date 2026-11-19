@@ -14,7 +14,8 @@ export type AppId =
   | 'imageviewer'
   | 'music'
   | 'video'
-  | 'trash';
+  | 'trash'
+  | 'pdfviewer';
 
 export interface WindowInstance {
   id: string;

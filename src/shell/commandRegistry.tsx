@@ -110,7 +110,7 @@ export const COMMAND_REGISTRY: Record<string, CommandHandler> = {
                 <span className="text-amber-300 font-mono">skills</span>
                 <span className="text-slate-400 col-span-2">HDL, UVM, EDA tools & scripting</span>
                 <span className="text-amber-300 font-mono">projects</span>
-                <span className="text-slate-400 col-span-2">RISC-V, DMA, UVM & ASIC tapeouts</span>
+                <span className="text-slate-400 col-span-2">SPI Master, UART, PWM & Sync FIFO Verilog IP</span>
                 <span className="text-amber-300 font-mono">experience</span>
                 <span className="text-slate-400 col-span-2">Work experience & contributions</span>
                 <span className="text-amber-300 font-mono">education</span>
@@ -557,12 +557,12 @@ export const COMMAND_REGISTRY: Record<string, CommandHandler> = {
             <div className="bg-slate-900/60 p-3 rounded border border-slate-800">
               <div className="text-cyan-400 font-bold mb-1">[CORE SPECIALIZATION]</div>
               <ul className="list-disc list-inside space-y-1 text-slate-300">
-                <li>Pipelined Microprocessor Architectures (RISC-V RV32I)</li>
-                <li>SystemVerilog & Verilog Synthesizable RTL Design</li>
-                <li>Universal Verification Methodology (UVM) & SVA Assertions</li>
-                <li>Logic Synthesis & SDC Timing Optimization (Yosys)</li>
-                <li>Static Timing Analysis & Setup/Hold Closure (OpenSTA)</li>
-                <li>RTL-to-GDSII Physical Design & Signoff (OpenLane, Magic)</li>
+                <li>Verilog HDL Synthesizable Modeling & RTL Microarchitecture</li>
+                <li>Multi-Mode Parameterized SPI Master Controller (All 4 SPI Modes)</li>
+                <li>UART Serial Transceiver (9600 Baud, Dedicated Baud Generator)</li>
+                <li>PWM Generator with Variable Duty Cycle & Switch Debouncing</li>
+                <li>Parameterized Synchronous FIFO Design & Pointer Flags</li>
+                <li>FPGA Implementation & Verification with Xilinx Vivado & GTKWave</li>
               </ul>
             </div>
 
@@ -841,21 +841,27 @@ export const COMMAND_REGISTRY: Record<string, CommandHandler> = {
     return {
       node: (
         <div className="space-y-3 my-2 text-xs md:text-sm">
-          <div className="flex items-center justify-between border-b border-cyan-500/30 pb-2">
+          <div className="flex flex-wrap items-center justify-between gap-2 border-b border-cyan-500/30 pb-2">
             <span className="text-cyan-400 font-bold text-base">CURRICULUM VITAE — {PORTFOLIO_DATA.engineer.fullName.toUpperCase()}</span>
-            <button
-              onClick={() => {
-                const element = document.createElement("a");
-                const file = new Blob([PORTFOLIO_DATA.engineer.summary], {type: 'text/plain'});
-                element.href = URL.createObjectURL(file);
-                element.download = `${PORTFOLIO_DATA.engineer.handle}_resume.txt`;
-                document.body.appendChild(element);
-                element.click();
-              }}
-              className="px-3 py-1 bg-emerald-600 hover:bg-emerald-500 text-white rounded text-xs font-mono font-bold transition-colors cursor-pointer"
-            >
-              📥 Download Resume (TXT)
-            </button>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => {
+                  window.dispatchEvent(new CustomEvent('open-pdf-viewer'));
+                }}
+                className="px-3 py-1 bg-[#e95420] hover:bg-[#ff6e3a] text-white rounded text-xs font-mono font-bold transition-colors cursor-pointer flex items-center gap-1.5"
+              >
+                <span>🔍</span>
+                <span>Open in PDF Viewer</span>
+              </button>
+              <a
+                href="/Arkasnata_Pal_Resume.pdf"
+                download="Arkasnata_Pal_Resume.pdf"
+                className="px-3 py-1 bg-emerald-600 hover:bg-emerald-500 text-white rounded text-xs font-mono font-bold transition-colors cursor-pointer flex items-center gap-1.5"
+              >
+                <span>📥</span>
+                <span>Download PDF</span>
+              </a>
+            </div>
           </div>
           <div className="bg-black/60 p-4 rounded border border-slate-800 font-mono text-xs whitespace-pre-wrap leading-relaxed text-slate-300">
             {`================================================================================
@@ -867,14 +873,36 @@ CONTACT:  ${PORTFOLIO_DATA.engineer.email} | ${PORTFOLIO_DATA.engineer.location}
 SUMMARY:
 ${PORTFOLIO_DATA.engineer.summary}
 
-SPECIALIZATION:
-- RTL Modeling: Synthesizable SystemVerilog, FSMs, Hazard Resolution, Dual-Port SRAMs
-- Microarchitecture: RISC-V 32-bit (RV32I) 5-stage pipeline with dynamic branch prediction
-- Functional Verification: UVM 1.2 components, TLM ports, SVA concurrent assertions
-- Logic Synthesis: Yosys & Synopsys DC, Technology Mapping to SkyWater 130nm standard cells
-- Static Timing Analysis (STA): OpenSTA, SDC constraints, setup/hold slack closure
-- Physical Implementation: OpenLane/OpenROAD full ASIC flow from Verilog to tapeout GDSII`}
+TECHNICAL PROFILE:
+- Hardware Description Languages: Verilog HDL
+- Programming Languages: C, C++, Python
+- Core Subjects: Digital Electronics, Logic Design, Electronic Devices, Signals and Systems
+- EDA Tools: Xilinx Vivado, Icarus Verilog, GTKWave
+- Projects: SPI Master Controller (All 4 Modes), UART Transceiver (9600 Baud), PWM Generator, Synchronous FIFO
+- Achievements: Smart India Hackathon 2024 Finalist, NPTEL Elite Certification (IIT Guwahati)`}
           </div>
+        </div>
+      ),
+    };
+  },
+
+  evince: () => {
+    window.dispatchEvent(new CustomEvent('open-pdf-viewer'));
+    return {
+      node: (
+        <div className="text-emerald-400 font-mono text-xs my-1">
+          [OK] Opening GNOME Document Viewer (Evince): Arkasnata_Pal_Resume.pdf
+        </div>
+      ),
+    };
+  },
+
+  pdf: () => {
+    window.dispatchEvent(new CustomEvent('open-pdf-viewer'));
+    return {
+      node: (
+        <div className="text-emerald-400 font-mono text-xs my-1">
+          [OK] Opening GNOME Document Viewer (Evince): Arkasnata_Pal_Resume.pdf
         </div>
       ),
     };
@@ -905,42 +933,42 @@ SPECIALIZATION:
               </thead>
               <tbody className="divide-y divide-slate-800 text-slate-300">
                 <tr className="hover:bg-slate-900/30">
-                  <td className="p-2 font-bold text-amber-300">riscv_core_top</td>
-                  <td className="p-2">SystemVerilog (IEEE 1800)</td>
-                  <td className="p-2 text-cyan-300">150 MHz</td>
-                  <td className="p-2">18,450</td>
-                  <td className="p-2">5 (IF/ID/EX/MEM/WB)</td>
-                  <td className="p-2 text-emerald-400 font-bold">SYNTHESIZED (WNS: +0.42ns)</td>
+                  <td className="p-2 font-bold text-amber-300">spi_master</td>
+                  <td className="p-2">Verilog HDL (IEEE 1364)</td>
+                  <td className="p-2 text-cyan-300">50 MHz</td>
+                  <td className="p-2">Parameterized</td>
+                  <td className="p-2">All 4 SPI Modes</td>
+                  <td className="p-2 text-emerald-400 font-bold">VERIFIED (Vivado Simulation)</td>
                 </tr>
                 <tr className="hover:bg-slate-900/30">
-                  <td className="p-2 font-bold text-amber-300">axi_dma_top</td>
-                  <td className="p-2">Verilog-2001</td>
-                  <td className="p-2 text-cyan-300">200 MHz</td>
-                  <td className="p-2">12,180</td>
-                  <td className="p-2">4 Channels</td>
-                  <td className="p-2 text-emerald-400 font-bold">VERIFIED (CDC Clean)</td>
+                  <td className="p-2 font-bold text-amber-300">uart_top</td>
+                  <td className="p-2">Verilog HDL</td>
+                  <td className="p-2 text-cyan-300">50 MHz</td>
+                  <td className="p-2">9600 Baud</td>
+                  <td className="p-2">FSM Tx / Rx</td>
+                  <td className="p-2 text-emerald-400 font-bold">VERIFIED (Vivado Simulation)</td>
                 </tr>
                 <tr className="hover:bg-slate-900/30">
-                  <td className="p-2 font-bold text-amber-300">fifo_async_top</td>
-                  <td className="p-2">Verilog-2001</td>
-                  <td className="p-2 text-cyan-300">250 MHz</td>
-                  <td className="p-2">1,420</td>
-                  <td className="p-2">Dual-Clock (Gray Sync)</td>
-                  <td className="p-2 text-emerald-400 font-bold">VERIFIED (Zero Meta)</td>
+                  <td className="p-2 font-bold text-amber-300">pwm_generator</td>
+                  <td className="p-2">Verilog HDL</td>
+                  <td className="p-2 text-cyan-300">50 MHz</td>
+                  <td className="p-2">Variable Duty</td>
+                  <td className="p-2">Button & Debouncer</td>
+                  <td className="p-2 text-emerald-400 font-bold">VERIFIED (Vivado Waveform)</td>
                 </tr>
                 <tr className="hover:bg-slate-900/30">
-                  <td className="p-2 font-bold text-amber-300">aes128_core</td>
-                  <td className="p-2">SystemVerilog</td>
-                  <td className="p-2 text-cyan-300">125 MHz</td>
-                  <td className="p-2">24,300</td>
-                  <td className="p-2">10 Rounds Iterative</td>
-                  <td className="p-2 text-purple-400 font-bold">TAPEOUT READY (GDSII)</td>
+                  <td className="p-2 font-bold text-amber-300">sync_fifo</td>
+                  <td className="p-2">Verilog HDL</td>
+                  <td className="p-2 text-cyan-300">100 MHz</td>
+                  <td className="p-2">Parameterized</td>
+                  <td className="p-2">Full / Empty Flags</td>
+                  <td className="p-2 text-purple-400 font-bold">VERIFIED (Timing Clean)</td>
                 </tr>
               </tbody>
             </table>
           </div>
           <div className="text-xs text-slate-400">
-            Design files located in <span className="text-amber-300 font-mono">/home/arka/projects/rtl/</span>. Inspect with <span className="text-cyan-300 font-mono">cat /home/arka/projects/rtl/riscv_core.sv</span>.
+            Design files located in <span className="text-amber-300 font-mono">/home/arka/projects/rtl/</span>. Inspect with <span className="text-cyan-300 font-mono">cat /home/arka/projects/rtl/spi_master.v</span>.
           </div>
         </div>
       ),
@@ -1001,7 +1029,7 @@ SPECIALIZATION:
             LOGIC SYNTHESIS REPORT (YOSYS / SYNOPSYS DC)
           </div>
           <div className="bg-black/60 p-4 rounded border border-slate-800 space-y-2 text-slate-300">
-            <div className="text-slate-400">=== Synthesis Run Summary: Top Module 'riscv_core_top' ===</div>
+            <div className="text-slate-400">=== Synthesis Run Summary: Top Module 'spi_master' ===</div>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-2 py-2 border-y border-slate-800">
               <div><span className="text-slate-400">Target PDK:</span> <span className="text-cyan-300">sky130_fd_sc_hd</span></div>
               <div><span className="text-slate-400">Clock Target:</span> <span className="text-amber-300">150 MHz (6.66 ns)</span></div>

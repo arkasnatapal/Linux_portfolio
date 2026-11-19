@@ -48,21 +48,20 @@ Quick Start:
 Title:          ${PORTFOLIO_DATA.engineer.title}
 Specialization: ${PORTFOLIO_DATA.engineer.specialization}
 Location:       ${PORTFOLIO_DATA.engineer.location}
-Status:         ${PORTFOLIO_DATA.engineer.status}
+Phone:          ${PORTFOLIO_DATA.engineer.phone}
 Email:          ${PORTFOLIO_DATA.engineer.email}
-GitHub:         ${PORTFOLIO_DATA.engineer.github}
 LinkedIn:       ${PORTFOLIO_DATA.engineer.linkedin}
 
 SUMMARY:
 ${PORTFOLIO_DATA.engineer.summary}
 
 PRIMARY FOCUS AREAS:
-  1. RTL Microarchitecture & Synthesizable Modeling (SystemVerilog / Verilog)
-  2. Pipelined Microprocessors (RISC-V RV32I / RV64I) & Hazard Units
-  3. Constrained-Random Functional Verification & Scoreboards (UVM / SVA)
-  4. Logic Synthesis, Technology Mapping & Clock-Gating (Yosys / Synopsys DC)
-  5. Static Timing Analysis (STA), Constraints (SDC) & Timing Closure (OpenSTA)
-  6. Automated ASIC Physical Design (RTL-to-GDSII on SkyWater 130nm / OpenLane)
+  1. Verilog HDL Synthesizable Modeling & RTL Microarchitecture
+  2. Multi-Mode Parameterized SPI Master Controller (All 4 SPI Modes)
+  3. UART Serial Transceiver (9600 Baud, Dedicated Baud Generator)
+  4. PWM Generator with Dynamic Push-Button Duty Cycle Control & Debouncer
+  5. Synchronous FIFO Architecture (Read/Write Pointer Logic & Flags)
+  6. FPGA Design & Verification Flow with Xilinx Vivado, Icarus Verilog, GTKWave
 `;
 
   const skillsContent = `================================================================================
@@ -134,34 +133,64 @@ Open for:       Full-Time VLSI Positions, ASIC Design Consulting & Collaboration
 `;
 
   const resumeText = `================================================================================
-                     CURRICULUM VITAE — ${PORTFOLIO_DATA.engineer.fullName.toUpperCase()}
+                     CURRICULUM VITAE — ARKASNATA PAL
 ================================================================================
-Title: ${PORTFOLIO_DATA.engineer.title} | ${PORTFOLIO_DATA.engineer.location}
-Contact: ${PORTFOLIO_DATA.engineer.email} | ${PORTFOLIO_DATA.engineer.github}
++91-8250495806 | arka4551@gmail.com | linkedin.com/in/arkasnata-pal-6a3682276
 
-[CAREER OBJECTIVE]
-Digital VLSI Engineer seeking to contribute robust microarchitectural designs,
-high-coverage verification suites, and rigorous physical design flows to
-leading-edge semiconductor and SoC tapeouts.
+EDUCATION
+• Jalpaiguri Government Engineering College
+  Bachelor of Technology (B.Tech) in Electronics and Communication Engineering (2024 - 2028)
+  SGPA: 8.14
 
-[EXPERTISE SUMMARY]
-- RTL Design (Verilog / SystemVerilog) for pipelined processors and AMBA interconnects.
-- UVM Testbench development, functional coverage models, and SystemVerilog Assertions.
-- Logic Synthesis with Yosys / Synopsys DC, timing constraint formulation in SDC.
-- Static Timing Analysis with OpenSTA & PrimeTime (WNS closure, clock skew optimization).
-- Full Physical Design flow with OpenLane / OpenROAD on SkyWater 130nm PDK.
+• HemSheela Model School, Durgapur
+  Class 12 (CBSE Board) 2024 — Percentage: 93%
 
-[EDUCATION]
-${PORTFOLIO_DATA.education[0].degree}
-${PORTFOLIO_DATA.education[0].institution} (${PORTFOLIO_DATA.education[0].period}) — ${PORTFOLIO_DATA.education[0].score}
+• St. Xavier’s School, Durgapur
+  Class 10 (ICSE Board) 2022 — Percentage: 95%
 
-[NOTABLE PROJECTS]
-1. 5-Stage Pipelined RISC-V RV32I Processor Core (150 MHz, Sky130, Zero Timing Violations)
-2. Configurable AXI4 Scatter-Gather DMA Controller (3.2 GB/s, Async CDC FIFOs)
-3. UVM-Based Constrained-Random Verification Environment for AMBA AXI4 (99.4% Cov)
-4. RTL-to-GDSII Physical Implementation of Crypto Core (Sky130, DRC/LVS Clean)
+TECHNICAL SKILLS
+• Hardware Description Languages: Verilog HDL
+• Programming Languages: C, C++, Python
+• Core Subjects: Digital Electronics, Logic Design, Electronic Devices, Signals and Systems
+• Tools: Xilinx Vivado, Icarus Verilog, GTKWave
 
-[RUN COMMAND 'resume' OR DOWNLOAD PDF VIA WORKSTATION INTERFACE]
+PROJECTS
+1. Multi-Mode Parameterized SPI Master Controller | Verilog, Xilinx Vivado
+   - Designed a fully parameterized SPI Master IP in Verilog supporting variable word lengths and runtime-configurable clock division.
+   - Engineered dynamic edge-transition logic supporting all 4 SPI modes via runtime CPOL and CPHA configuration matrix.
+   - Developed an FSM gating the clock divider strictly within active transfer windows to ensure clean, deterministic timing.
+   - Implemented integrated bidirectional shift registers to execute synchronized, full-duplex serial-to-parallel data conversion.
+   - Verified protocol compliance, state transitions, and data bus integrity across all mode configurations via Vivado simulation.
+
+2. UART Transmitter and Receiver using Verilog | Verilog HDL, Xilinx Vivado
+   - Designed and implemented UART Transmitter and Receiver modules in Verilog HDL for asynchronous serial communication.
+   - Configured communication at 9600 baud rate using a dedicated baud rate generator.
+   - Developed FSM-based control logic for serial data transmission and reception.
+   - Verified correct data transfer and protocol functionality through simulation in Xilinx Vivado.
+
+3. PWM Generator with Variable Duty Cycle Control | Verilog HDL, Xilinx Vivado
+   - Designed a PWM generator in Verilog HDL with dynamically adjustable duty cycle.
+   - Implemented increase and decrease push-button controls for real-time duty cycle modification.
+   - Integrated debouncing logic to eliminate false triggering caused by mechanical switch bounce.
+   - Verified PWM waveform generation and duty cycle variations through simulation in Xilinx Vivado.
+
+4. Synchronous FIFO Design using Verilog | Verilog, Xilinx Vivado
+   - Designed a parameterized synchronous FIFO architecture for temporary data storage and transfer.
+   - Implemented read/write pointer logic along with full and empty flag generation.
+   - Verified FIFO operation under different read and write conditions through simulation.
+   - Analyzed waveform results to validate functionality and timing behavior.
+
+ACHIEVEMENTS
+• Finalist – Smart India Hackathon 2024 (SIH 2024)
+• Completed NPTEL Course: Digital Design Using Verilog (IIT Guwahati) with Elite Certification
+
+RELEVANT COURSEWORK
+Digital Electronics | RTL to GDSII Flow
+
+AREAS OF INTEREST
+Digital VLSI Design | RTL Design and Verification | FPGA Development | Analog VLSI design
+
+[Type 'resume' or open Resume.pdf on the desktop to inspect the full document]
 `;
 
   // Root directory structure
@@ -249,7 +278,7 @@ ${PORTFOLIO_DATA.education[0].institution} (${PORTFOLIO_DATA.education[0].period
                 group: 'root',
                 size: 4096,
                 modified: sysDate,
-                content: `[  OK  ] Started System Logging Service.\n[  OK  ] Mounted /home Virtual Filesystem.\n[  OK  ] Started VLSI Workstation Terminal Subsystem.\n[  OK  ] Loaded SkyWater 130nm PDK Technology Files.\n`,
+                content: `[  OK  ] Started System Logging Service.\n[  OK  ] Mounted /home Virtual Filesystem.\n[  OK  ] Started VLSI Workstation Terminal Subsystem.\n[  OK  ] Loaded Xilinx Vivado & Verilog HDL Toolchain Libraries.\n`,
               },
               'dmesg': {
                 name: 'dmesg',
@@ -302,27 +331,47 @@ ${PORTFOLIO_DATA.education[0].institution} (${PORTFOLIO_DATA.education[0].period
                     modified: modDate,
                     content: readmeContent,
                   },
-                  'riscv_core.sv': {
-                    name: 'riscv_core.sv',
+                  'Resume.pdf': {
+                    name: 'Resume.pdf',
                     type: 'file',
                     permissions: '-rw-r--r--',
                     owner: 'arka',
                     group: 'arka',
-                    size: 890,
+                    size: 121647,
                     modified: modDate,
-                    content: `// 5-Stage Pipelined RISC-V RV32I Processor Top
-module riscv_core_top (
-    input  logic        clk,
-    input  logic        rst_n,
-    output logic [31:0] imem_addr,
-    input  logic [31:0] imem_rdata,
-    output logic [31:0] dmem_addr,
-    output logic [31:0] dmem_wdata,
-    input  logic [31:0] dmem_rdata,
-    output logic        dmem_we
+                    content: '[PDF Document: Arkasnata Pal Resume - Click to view in Document Viewer]',
+                  },
+                  'spi_master.v': {
+                    name: 'spi_master.v',
+                    type: 'file',
+                    permissions: '-rw-r--r--',
+                    owner: 'arka',
+                    group: 'arka',
+                    size: 4850,
+                    modified: modDate,
+                    content: `// Multi-Mode Parameterized SPI Master Controller (Verilog HDL)
+// Supports all 4 SPI Modes (CPOL 0/1, CPHA 0/1), Runtime Clock Division & Full-Duplex Transfer
+module spi_master #(
+    parameter DATA_WIDTH = 8,
+    parameter CLK_DIV    = 4
+)(
+    input  wire                  clk,
+    input  wire                  rst_n,
+    input  wire                  cpol,
+    input  wire                  cpha,
+    input  wire [DATA_WIDTH-1:0] tx_data,
+    input  wire                  start_tx,
+    output reg  [DATA_WIDTH-1:0] rx_data,
+    output reg                   busy,
+    output reg                   done,
+    output reg                   sclk,
+    output reg                   mosi,
+    input  wire                  miso,
+    output reg                   cs_n
 );
-    // Pipeline Stages: IF -> ID -> EX -> MEM -> WB
-    // Branch Prediction & Hazard Resolution Unit
+    // FSM States: IDLE, LOAD, TRANSFER, FINISH
+    // Clock divider gating strictly within active transfer window
+    // Bidirectional shift registers for full-duplex transmission
 endmodule\n`,
                   },
                   'about.txt': {
@@ -526,79 +575,114 @@ endmodule\n`,
                         group: 'arka',
                         size: 380,
                         modified: modDate,
-                        content: `RTL DESIGN REPOSITORY\nContains synthesizable SystemVerilog designs including pipelined RISC-V RV32I processor,\nAXI4-Lite scatter-gather DMA controller, and dual-clock asynchronous FIFOs.\nUse command 'rtl --list' to inspect full metrics.\n`,
+                        content: `RTL DESIGN REPOSITORY\nContains synthesizable Verilog HDL designs by Arkasnata Pal:\n1. Multi-Mode Parameterized SPI Master Controller (All 4 SPI Modes)\n2. UART Transmitter and Receiver at 9600 Baud\n3. PWM Generator with Dynamic Duty Cycle Control\n4. Synchronous FIFO Design with Flag Generation\nVerified in Xilinx Vivado and GTKWave.\n`,
                       },
-                      'riscv_core.sv': {
-                        name: 'riscv_core.sv',
+                      'spi_master.v': {
+                        name: 'spi_master.v',
                         type: 'file',
                         permissions: '-rw-r--r--',
                         owner: 'arka',
                         group: 'arka',
-                        size: 14200,
+                        size: 5120,
                         modified: modDate,
-                        content: `// 5-Stage Pipelined RISC-V RV32I Processor Top
-module riscv_core_top (
-    input  logic        clk,
-    input  logic        rst_n,
-    // Instruction Memory Bus
-    output logic [31:0] imem_addr,
-    input  logic [31:0] imem_rdata,
-    // Data Memory Bus
-    output logic [31:0] dmem_addr,
-    output logic [31:0] dmem_wdata,
-    input  logic [31:0] dmem_rdata,
-    output logic        dmem_we
+                        content: `// Multi-Mode Parameterized SPI Master Controller
+// Designed and verified in Xilinx Vivado by Arkasnata Pal
+module spi_master #(
+    parameter DATA_WIDTH = 8,
+    parameter CLK_DIV    = 4
+)(
+    input  wire                  clk,
+    input  wire                  rst_n,
+    input  wire                  cpol,
+    input  wire                  cpha,
+    input  wire [DATA_WIDTH-1:0] tx_data,
+    input  wire                  start_tx,
+    output reg  [DATA_WIDTH-1:0] rx_data,
+    output reg                   busy,
+    output reg                   done,
+    output reg                   sclk,
+    output reg                   mosi,
+    input  wire                  miso,
+    output reg                   cs_n
 );
-    // Pipeline Registers: IF/ID, ID/EX, EX/MEM, MEM/WB
-    // Dynamic Branch Predictor (2-bit saturating counter)
-    // Forwarding Unit & Hazard Detection Unit
-    // [Synthesizable on SkyWater 130nm @ 150 MHz]
+    // Gated clock divider & edge-transition logic supporting modes 0, 1, 2, 3
 endmodule\n`,
                       },
-                      'axi_dma_controller.v': {
-                        name: 'axi_dma_controller.v',
+                      'uart_tx_rx.v': {
+                        name: 'uart_tx_rx.v',
                         type: 'file',
                         permissions: '-rw-r--r--',
                         owner: 'arka',
                         group: 'arka',
-                        size: 8900,
+                        size: 6840,
                         modified: modDate,
-                        content: `// AXI4 Scatter-Gather DMA Controller
-module axi_dma_top #(
-    parameter DATA_WIDTH = 64,
-    parameter ADDR_WIDTH = 32
+                        content: `// UART Transmitter and Receiver Top with 9600 Baud Generator
+// Designed and simulated in Xilinx Vivado by Arkasnata Pal
+module uart_top #(
+    parameter CLK_FREQ  = 50000000,
+    parameter BAUD_RATE = 9600
 )(
-    input  wire                  axi_clk,
-    input  wire                  axi_rst_n,
-    // AXI4 Master Read & Write Channels
-    output wire [ADDR_WIDTH-1:0] m_axi_awaddr,
-    output wire [7:0]            m_axi_awlen,
-    output wire                  m_axi_awvalid,
-    input  wire                  m_axi_awready
+    input  wire       clk,
+    input  wire       rst_n,
+    input  wire [7:0] tx_byte,
+    input  wire       tx_start,
+    output wire       tx_busy,
+    output wire       tx_pin,
+    input  wire       rx_pin,
+    output wire [7:0] rx_byte,
+    output wire       rx_ready
 );
-    // Multi-channel descriptor chaining engine
+    // Dedicated baud rate generator & FSM-based serial communication
 endmodule\n`,
                       },
-                      'fifo_async.v': {
-                        name: 'fifo_async.v',
+                      'pwm_generator.v': {
+                        name: 'pwm_generator.v',
                         type: 'file',
                         permissions: '-rw-r--r--',
                         owner: 'arka',
                         group: 'arka',
-                        size: 4200,
+                        size: 4320,
                         modified: modDate,
-                        content: `// Dual-Clock Asynchronous FIFO with Gray Code CDC
-module fifo_async #(
-    parameter DSIZE = 32,
-    parameter ASIZE = 4
+                        content: `// PWM Generator with Variable Duty Cycle Control & Push-Button Debouncing
+// Designed and verified in Xilinx Vivado by Arkasnata Pal
+module pwm_generator #(
+    parameter COUNTER_WIDTH = 8
 )(
-    input  wire             wclk, wrst_n, winc,
-    input  wire [DSIZE-1:0] wdata,
-    input  wire             rclk, rrst_n, rinc,
-    output wire [DSIZE-1:0] rdata,
-    output wire             wfull, rempty
+    input  wire clk,
+    input  wire rst_n,
+    input  wire btn_inc,
+    input  wire btn_dec,
+    output reg  pwm_out,
+    output reg [COUNTER_WIDTH-1:0] duty_val
 );
-    // 2-Flip-Flop synchronizers for Gray pointers
+    // Real-time duty cycle adjustment with switch anti-bounce filtering
+endmodule\n`,
+                      },
+                      'sync_fifo.v': {
+                        name: 'sync_fifo.v',
+                        type: 'file',
+                        permissions: '-rw-r--r--',
+                        owner: 'arka',
+                        group: 'arka',
+                        size: 5890,
+                        modified: modDate,
+                        content: `// Parameterized Synchronous FIFO Design
+// Designed and verified in Xilinx Vivado by Arkasnata Pal
+module sync_fifo #(
+    parameter DEPTH      = 16,
+    parameter DATA_WIDTH = 8,
+    parameter ADDR_WIDTH = 4
+)(
+    input  wire                  clk,
+    input  wire                  rst_n,
+    input  wire                  wr_en,
+    input  wire [DATA_WIDTH-1:0] wr_data,
+    input  wire                  rd_en,
+    output reg  [DATA_WIDTH-1:0] rd_data,
+    output wire                  full,
+    output wire                  empty
+);
+    // Binary read/write pointers and flag generation logic
 endmodule\n`,
                       },
                     },
@@ -693,7 +777,7 @@ assert property (p_valid_hold_until_ready) else $error("AXI handshake violation!
                         group: 'arka',
                         size: 350,
                         modified: modDate,
-                        content: `LOGIC SYNTHESIS AND TIMING CONSTRAINTS\nSynthesized using Yosys & Synopsys Design Compiler targeting SkyWater 130nm library.\nRun 'synthesis --report' and 'sta --report' for full gate level metrics.\n`,
+                        content: `LOGIC SYNTHESIS AND TIMING CONSTRAINTS\nSynthesized and simulated using Xilinx Vivado and Icarus Verilog.\nRun 'synthesis --report' and 'sta --report' for full timing and simulation metrics.\n`,
                       },
                       'timing_constraints.sdc': {
                         name: 'timing_constraints.sdc',
@@ -747,18 +831,18 @@ set_load 0.035 [all_outputs]
                         group: 'arka',
                         size: 420,
                         modified: modDate,
-                        content: `PHYSICAL DESIGN & ASIC TAPEOUT ARTIFACTS\nTechnology: SkyWater 130nm CMOS (Sky130A PDK)\nFloorplanning, Power Grid, Placement, CTS, Detailed Routing & Signoff.\nRun 'physical-design --flow', 'floorplan --info', and 'gds --info'.\n`,
+                        content: `FPGA IMPLEMENTATION & VERIFICATION ARTIFACTS\nTarget: Xilinx Vivado 2023.2 RTL Flow\nSynthesis, Behavioral Simulation, Waveform Debugging & Resource Utilization.\nRun 'projects', 'rtl --list', and 'skills' for details.\n`,
                       },
-                      'sky130_gds_summary.txt': {
-                        name: 'sky130_gds_summary.txt',
+                      'vivado_impl_summary.txt': {
+                        name: 'vivado_impl_summary.txt',
                         type: 'file',
                         permissions: '-rw-r--r--',
                         owner: 'arka',
                         group: 'arka',
                         size: 2200,
                         modified: modDate,
-                        content: `GDSII TAPEOUT SUMMARY:
-  Die Dimension: 1000 um x 1000 um
+                        content: `VIVADO IMPLEMENTATION SUMMARY:
+  Module Top: spi_master / uart_top / pwm_generator / sync_fifo
   Core Utilization: 42.8%
   DRC Violations (Magic): 0
   LVS Verification (Netgen): 0 Errors (100% Net Match)

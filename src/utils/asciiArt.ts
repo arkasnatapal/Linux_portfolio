@@ -33,7 +33,7 @@ export const ASCII_NEOFETCH_LOGO = `
    │  ┌────────────────────────┐  │
    │  │  ╔══════════════════╗  │  │
    │  │  ║   ARKA SILICON   ║  │  │
-   │  │  ║   RV32I / SKY130 ║  │  │
+   │  │  ║   VERILOG / FPGA ║  │  │
    │  │  ║  ┌───┐    ┌───┐  ║  │  │
    │  │  ║  │ALU│───▶│REG│  ║  │  │
    │  │  ║  └───┘    └───┘  ║  │  │
@@ -46,22 +46,22 @@ export const ASCII_NEOFETCH_LOGO = `
 `;
 
 export const ASCII_SILICON_DIE = `
-+------------------[ SKY130 1.0mm x 1.0mm DIE ]------------------+
-| [VDD] [IO_0] [IO_1] [IO_2] [IO_3] [IO_4] [IO_5] [IO_6] [VSS]    |
++------------------[ FPGA / RTL HARDWARE ARCHITECTURE ]------------------+
+| [VCC] [IO_0] [IO_1] [IO_2] [IO_3] [IO_4] [IO_5] [IO_6] [GND]    |
 | +------------------------------------------------------------+ |
-| |                    INSTRUCTION CACHE (2KB)                 | |
+| |                    CLOCK & RESET CONTROLLER                | |
 | |  +--------------------+  +-------------------------------+ | |
-| |  | 5-STAGE RV32I CORE |  | AXI4-LITE CROSSBAR SWITCH     | | |
+| |  | SPI MASTER (4 MODES)  | UART TRANSCEIVER (9600 BAUD)  | |
 | |  |                    |  |                               | | |
-| |  |  [IF] -> [ID]      |  |  +------------+ +----------+ | | |
-| |  |    |       |       |  |  | UART_0     | | SPI_0    | | | |
-| |  |  [EX] -> [MEM]     |  |  +------------+ +----------+ | | |
-| |  |    |               |  |  | TIMER_32   | | GPIO_8   | | | |
-| |  |  [WB]              |  |  +------------+ +----------+ | | |
+| |  |  [CPOL/CPHA MATRIX]|  |  +------------+ +----------+  | | |
+| |  |    |       |       |  |  | BAUD GEN   | | TX/RX FSM|  | | |
+| |  |  [SHIFT REGISTERS] |  |  +------------+ +----------+  | | |
+| |  |    |               |  |  | PWM MODULE | | DEBOUNCER|  | | |
+| |  |  [MISO/MOSI GATING]|  |  +------------+ +----------+  | | |
 | |  +--------------------+  +-------------------------------+ | |
 | |                                                            | |
-| |                    DATA SRAM ARRAY (4KB)                   | |
-| |                   [BIST ENGINE & REDUNDANCY]               | |
+| |                    SYNCHRONOUS FIFO BUFFER                 | |
+| |                 [POINTER LOGIC & FULL/EMPTY FLAGS]         | |
 | +------------------------------------------------------------+ |
 | [VSS] [CLK] [RST_N] [JTAG_TCK] [TDI] [TDO] [TMS] [VSS] [VDD]   |
 +----------------------------------------------------------------+

@@ -9,9 +9,9 @@ export const MusicApp: React.FC = () => {
   const [currentTrack, setCurrentTrack] = useState<number>(0);
 
   const tracks = [
-    { title: 'Silicon Synthesis (Lo-Fi EDA Beats)', artist: 'ARKA Sound Lab', duration: '3:45' },
-    { title: 'Clock Tree Balancing Ambient', artist: 'SkyWater Audio', duration: '4:12' },
-    { title: 'GDSII Signoff Midnight Stream', artist: 'OpenLane Synth', duration: '5:02' },
+    { title: 'Digital Logic Waves (Lo-Fi Study Beats)', artist: 'VLSI Workstation', duration: '3:45' },
+    { title: 'SPI & UART Simulation Ambient', artist: 'Vivado Synth', duration: '4:12' },
+    { title: 'Verilog FPGA Clock Midnight Stream', artist: 'GTKWave Audio', duration: '5:02' },
   ];
 
   return (

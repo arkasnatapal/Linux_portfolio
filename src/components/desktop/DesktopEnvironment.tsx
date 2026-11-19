@@ -29,6 +29,7 @@ import { SettingsApp } from '../apps/SettingsApp';
 import { TextEditorApp } from '../apps/TextEditorApp';
 import { ImageViewerApp } from '../apps/ImageViewerApp';
 import { MusicApp } from '../apps/MusicApp';
+import { PDFViewerModal } from '../apps/PDFViewerModal';
 
 interface DesktopEnvironmentProps {
   onLogout: () => void;
@@ -69,15 +70,23 @@ export const DesktopEnvironment: React.FC<DesktopEnvironmentProps> = ({
   const [isCalendarOpen, setIsCalendarOpen] = useState<boolean>(false);
   const [volume, setVolume] = useState<number>(85);
   const [brightness, setBrightness] = useState<number>(100);
+  const [isPdfModalOpen, setIsPdfModalOpen] = useState<boolean>(false);
   const [isTourOpen, setIsTourOpen] = useState<boolean>(() => {
     return localStorage.getItem('ubuntu_tour_completed') !== 'true';
   });
 
-  // Listen for manual tour trigger
+  // Listen for manual tour trigger & PDF viewer trigger
   React.useEffect(() => {
     const handleOpenTour = () => setIsTourOpen(true);
+    const handleOpenPdf = () => setIsPdfModalOpen(true);
+
     window.addEventListener('open-ubuntu-tour', handleOpenTour);
-    return () => window.removeEventListener('open-ubuntu-tour', handleOpenTour);
+    window.addEventListener('open-pdf-viewer', handleOpenPdf);
+
+    return () => {
+      window.removeEventListener('open-ubuntu-tour', handleOpenTour);
+      window.removeEventListener('open-pdf-viewer', handleOpenPdf);
+    };
   }, []);
 
   // Focus a window and bring it to the front
@@ -97,6 +106,11 @@ export const DesktopEnvironment: React.FC<DesktopEnvironmentProps> = ({
 
   // Launch an application or focus its existing instance
   const handleLaunchApp = (appId: AppId, params?: any) => {
+    if (appId === 'pdfviewer') {
+      setIsPdfModalOpen(true);
+      return;
+    }
+
     const existing = windows.find(w => w.appId === appId);
     if (existing) {
       if (existing.isMinimized) {
@@ -122,6 +136,7 @@ export const DesktopEnvironment: React.FC<DesktopEnvironmentProps> = ({
       music: { title: 'Rhythmbox Music Player', width: 620, height: 420 },
       video: { title: 'Totem Video Player', width: 700, height: 460 },
       trash: { title: 'Trash — Files', width: 740, height: 480 },
+      pdfviewer: { title: 'Document Viewer — Arkasnata_Pal_Resume.pdf', width: 850, height: 600 },
     };
 
     const def = appDefaults[appId] || { title: appId, width: 760, height: 500 };
@@ -257,7 +272,9 @@ export const DesktopEnvironment: React.FC<DesktopEnvironmentProps> = ({
                     <FilesApp
                       initialPath={win.params?.path || '/home/arka'}
                       onOpenFile={(filePath) => {
-                        if (filePath.endsWith('.sv') || filePath.endsWith('.v')) {
+                        if (filePath.toLowerCase().endsWith('.pdf')) {
+                          handleLaunchApp('pdfviewer');
+                        } else if (filePath.endsWith('.sv') || filePath.endsWith('.v')) {
                           handleLaunchApp('vscode', { file: filePath });
                         } else {
                           handleLaunchApp('textedit', { file: filePath });
@@ -333,6 +350,13 @@ export const DesktopEnvironment: React.FC<DesktopEnvironmentProps> = ({
       <WelcomeTourModal
         isOpen={isTourOpen}
         onClose={() => setIsTourOpen(false)}
+      />
+
+      {/* GNOME Evince Resume PDF Viewer Modal */}
+      <PDFViewerModal
+        isOpen={isPdfModalOpen}
+        onClose={() => setIsPdfModalOpen(false)}
+        theme={theme}
       />
     </div>
   );

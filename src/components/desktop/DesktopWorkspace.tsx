@@ -67,8 +67,19 @@ export const DesktopWorkspace: React.FC<DesktopWorkspaceProps> = ({
       name: 'LinkedIn',
       icon: <YaruLinkedinIcon className="w-11 h-11" />,
       action: () => {
-        window.open('https://linkedin.com/in/arka-vlsi', '_blank');
+        window.open('https://linkedin.com/in/arkasnata-pal-6a3682276', '_blank');
       },
+    },
+    {
+      id: 'resume',
+      name: 'Resume.pdf',
+      icon: (
+        <div className="w-10 h-11 bg-[#e01b24] rounded p-1 text-[9px] font-mono font-bold text-white flex flex-col justify-between shadow">
+          <span>PDF</span>
+          <span className="text-[8px] text-red-200">.pdf</span>
+        </div>
+      ),
+      action: () => onOpenApp('pdfviewer'),
     },
     {
       id: 'terminal',
@@ -94,15 +105,15 @@ export const DesktopWorkspace: React.FC<DesktopWorkspaceProps> = ({
       action: () => onOpenApp('textedit', { file: '/home/arka/README.md' }),
     },
     {
-      id: 'riscv',
-      name: 'riscv_core.sv',
+      id: 'spi_master',
+      name: 'spi_master.v',
       icon: (
         <div className="w-10 h-11 bg-[#26a269] rounded p-1 text-[9px] font-mono font-bold text-white flex flex-col justify-between shadow">
           <span>HDL</span>
-          <span className="text-[8px] text-emerald-200">.sv</span>
+          <span className="text-[8px] text-emerald-200">.v</span>
         </div>
       ),
-      action: () => onOpenApp('vscode', { file: '/home/arka/projects/rtl/riscv_core.sv' }),
+      action: () => onOpenApp('vscode', { file: '/home/arka/projects/rtl/spi_master.v' }),
     },
   ];
 

@@ -63,17 +63,17 @@ export const CalendarPopup: React.FC<CalendarPopupProps> = ({ onClose }) => {
               <span>VLSI Workstation Active</span>
             </div>
             <p className="text-[11px] text-slate-400">
-              SkyWater 130nm PDK and RTL synthesis pipelines ready.
+              Verilog HDL & Xilinx Vivado simulation pipelines ready.
             </p>
           </div>
 
           <div className="p-2.5 rounded-xl bg-black/40 border border-white/5 space-y-1">
             <div className="flex items-center gap-1.5 text-white font-medium">
               <span className="w-2 h-2 rounded-full bg-[#e95420]"></span>
-              <span>Tapeout Review</span>
+              <span>SPI Master & UART Verification</span>
             </div>
             <p className="text-[11px] text-slate-400">
-              RISC-V 32-bit core timing closed with WNS +0.42ns.
+              All 4 SPI modes and 9600 baud serial transceivers simulated and verified.
             </p>
           </div>
         </div>
