@@ -1,0 +1,151 @@
+@import "tailwindcss";
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+  
+  html, body {
+    margin: 0;
+    padding: 0;
+    background-color: #1a0616;
+    color: #e6edf3;
+    font-family: 'Ubuntu Mono', 'JetBrains Mono', monospace;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    user-select: text;
+  }
+}
+
+/* Custom terminal scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(30, 8, 24, 0.6);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 110, 140, 0.4);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(233, 84, 32, 0.6);
+}
+
+/* Authentic Ubuntu Desktop Wallpaper (Dark Yaru) */
+.ubuntu-wallpaper {
+  background-color: #2c001e;
+  background-image: 
+    radial-gradient(circle at 75% 25%, rgba(119, 33, 111, 0.95) 0%, rgba(119, 33, 111, 0) 65%),
+    radial-gradient(circle at 25% 75%, rgba(233, 84, 32, 0.35) 0%, rgba(233, 84, 32, 0) 50%),
+    linear-gradient(135deg, #77216F 0%, #5E2750 35%, #2C001E 70%, #150010 100%);
+  background-size: cover;
+  background-position: center;
+}
+
+/* Authentic Ubuntu Light Wallpaper (Official Yaru Light) */
+.ubuntu-wallpaper-light {
+  background-color: #f0dfea;
+  background-image: 
+    radial-gradient(circle at 75% 20%, rgba(255, 235, 245, 0.95) 0%, rgba(255, 235, 245, 0) 60%),
+    radial-gradient(circle at 20% 80%, rgba(233, 84, 32, 0.25) 0%, rgba(233, 84, 32, 0) 50%),
+    linear-gradient(135deg, #faedf4 0%, #ecd0e1 30%, #c483af 70%, #77216F 100%);
+  background-size: cover;
+  background-position: center;
+}
+
+/* Ubuntu Login GDM Wallpaper */
+.ubuntu-gdm-wallpaper {
+  background-color: #1a0518;
+  background-image: radial-gradient(circle at 50% 45%, #4a1540 0%, #2c0b26 50%, #160413 100%);
+  background-size: cover;
+  background-position: center;
+}
+
+/* Ubuntu Terminal Background: The iconic #300a24 Aubergine */
+.ubuntu-terminal-body {
+  background-color: rgba(48, 10, 36, 0.98);
+}
+
+.font-ubuntu {
+  font-family: 'Ubuntu', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.font-ubuntu-mono {
+  font-family: 'Ubuntu Mono', 'JetBrains Mono', monospace;
+}
+
+@keyframes cursor-blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+.terminal-cursor-block {
+  animation: cursor-blink 1s infinite;
+}
+
+@keyframes spin-clockwise {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-plymouth-spin {
+  animation: spin-clockwise 1.1s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes pulse-subtle {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.03);
+  }
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 3s ease-in-out infinite;
+}
+
+/* Ubuntu GNOME Quick Settings Range Slider (Exact match to official Ubuntu) */
+.ubuntu-quick-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4px;
+  border-radius: 9999px;
+  outline: none;
+  cursor: pointer;
+}
+
+.ubuntu-quick-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  transition: transform 0.1s ease;
+}
+
+.ubuntu-quick-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+}
+
+.ubuntu-quick-slider::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: none;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
