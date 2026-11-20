@@ -8,6 +8,7 @@
  */
 
 import React, { useState, useEffect } from 'react';
+import { useMusicPlayer } from '../context/MusicPlayerContext';
 
 interface GNOMETopBarProps {
   activeAppTitle: string;
@@ -40,6 +41,7 @@ export const GNOMETopBar: React.FC<GNOMETopBarProps> = ({
   onOpenSettings,
   onShutdown,
 }) => {
+  const { currentTrack, isPlaying } = useMusicPlayer();
   const [timeStr, setTimeStr] = useState<string>('');
   const [showQuickSettings, setShowQuickSettings] = useState<boolean>(false);
   const [wifiEnabled, setWifiEnabled] = useState<boolean>(true);
@@ -163,14 +165,19 @@ export const GNOMETopBar: React.FC<GNOMETopBarProps> = ({
       {/* Center: System Clock (Click opens Calendar Popup) */}
       <button
         onClick={onToggleCalendar}
-        className={`font-medium text-xs tracking-wide px-2.5 py-0.5 rounded transition-colors cursor-pointer ${
+        className={`font-medium text-xs tracking-wide px-2.5 py-0.5 rounded transition-colors cursor-pointer flex items-center gap-1.5 ${
           theme === 'light'
             ? 'text-slate-800 hover:text-black hover:bg-black/10'
             : 'text-slate-100 hover:text-white hover:bg-white/10'
         }`}
         title="Open Calendar & Notifications"
       >
-        {timeStr || 'Thu Nov 19 13:00'}
+        <span>{timeStr || 'Thu Nov 19 13:00'}</span>
+        {isPlaying && (
+          <span className="text-[11px] text-[#e95420] animate-pulse" title={`Playing: ${currentTrack?.title || 'Music'}`}>
+            🎵
+          </span>
+        )}
       </button>
 
       {/* Right side: Combined Quick Settings Pill (GNOME 46 style) */}

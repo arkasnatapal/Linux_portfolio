@@ -30,6 +30,7 @@ import { TextEditorApp } from '../apps/TextEditorApp';
 import { ImageViewerApp } from '../apps/ImageViewerApp';
 import { MusicApp } from '../apps/MusicApp';
 import { PDFViewerModal } from '../apps/PDFViewerModal';
+import { MusicPlayerProvider } from '../../context/MusicPlayerContext';
 
 interface DesktopEnvironmentProps {
   onLogout: () => void;
@@ -37,7 +38,15 @@ interface DesktopEnvironmentProps {
   onShutdown?: () => void;
 }
 
-export const DesktopEnvironment: React.FC<DesktopEnvironmentProps> = ({
+export const DesktopEnvironment: React.FC<DesktopEnvironmentProps> = (props) => {
+  return (
+    <MusicPlayerProvider>
+      <DesktopEnvironmentInner {...props} />
+    </MusicPlayerProvider>
+  );
+};
+
+const DesktopEnvironmentInner: React.FC<DesktopEnvironmentProps> = ({
   onLogout,
   onRestart,
   onShutdown,
@@ -133,7 +142,7 @@ export const DesktopEnvironment: React.FC<DesktopEnvironmentProps> = ({
       settings: { title: 'Settings', width: 720, height: 500 },
       textedit: { title: 'Text Editor', width: 700, height: 480 },
       imageviewer: { title: 'Image Viewer', width: 760, height: 520 },
-      music: { title: 'Rhythmbox Music Player', width: 620, height: 420 },
+      music: { title: 'Rhythmbox Music Player', width: 660, height: 490 },
       video: { title: 'Totem Video Player', width: 700, height: 460 },
       trash: { title: 'Trash — Files', width: 740, height: 480 },
       pdfviewer: { title: 'Document Viewer — Arkasnata_Pal_Resume.pdf', width: 850, height: 600 },
@@ -347,7 +356,10 @@ export const DesktopEnvironment: React.FC<DesktopEnvironmentProps> = ({
 
       {/* Calendar & Notifications Center Overlay */}
       {isCalendarOpen && (
-        <CalendarPopup onClose={() => setIsCalendarOpen(false)} />
+        <CalendarPopup
+          onClose={() => setIsCalendarOpen(false)}
+          onOpenMusic={() => handleLaunchApp('music')}
+        />
       )}
 
       {/* First-Time Welcome to Ubuntu Tour Guide Wizard */}

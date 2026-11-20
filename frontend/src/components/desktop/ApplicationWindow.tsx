@@ -92,14 +92,12 @@ export const ApplicationWindow: React.FC<ApplicationWindowProps> = ({
     onMove(Math.max(minX, currentPos.x), Math.max(28, currentPos.y));
   };
 
-  if (instance.isMinimized) {
-    return null;
-  }
-
   return (
     <div
       onMouseDown={onFocus}
       className={`fixed transition-shadow rounded-none sm:rounded-lg overflow-hidden flex flex-col font-ubuntu select-none ${
+        instance.isMinimized ? 'hidden' : ''
+      } ${
         theme === 'light'
           ? (isActive
               ? 'shadow-2xl shadow-slate-950/30 ring-1 ring-black/20'
