@@ -76,9 +76,22 @@ export const GNOMETopBar: React.FC<GNOMETopBarProps> = ({
   };
 
   useEffect(() => {
-    // Fetch live network info from backend if available
+    // Native browser online status listener
+    const handleOnlineStatus = () => {
+      const isOnline = typeof navigator !== 'undefined' ? navigator.onLine : true;
+      setNetworkInfo(prev => ({
+        ...prev,
+        status: isOnline ? 'Connected' : 'Disconnected',
+        ssid: isOnline ? (prev.ssid || 'Host Network') : 'Offline',
+      }));
+    };
+
+    window.addEventListener('online', handleOnlineStatus);
+    window.addEventListener('offline', handleOnlineStatus);
+
+    // Fetch live network telemetry (handled by Vite dev middleware or serverless api)
     fetch('/api/network')
-      .then(res => res.json())
+      .then(res => (res.ok ? res.json() : null))
       .then(data => {
         if (data && data.ssid) {
           setNetworkInfo({
@@ -89,8 +102,13 @@ export const GNOMETopBar: React.FC<GNOMETopBarProps> = ({
         }
       })
       .catch(() => {
-        // Fallback to desktop host network
+        // Graceful fallback to default host network state
       });
+
+    return () => {
+      window.removeEventListener('online', handleOnlineStatus);
+      window.removeEventListener('offline', handleOnlineStatus);
+    };
   }, []);
 
   useEffect(() => {
@@ -184,7 +202,7 @@ export const GNOMETopBar: React.FC<GNOMETopBarProps> = ({
         {showQuickSettings && (
           <div
             onClick={(e) => e.stopPropagation()}
-            className={`absolute right-0 mt-1 w-80 rounded-[22px] shadow-2xl p-3.5 text-xs z-50 space-y-3 font-ubuntu border select-none ${
+            className={`absolute right-0 mt-1 w-[calc(100vw-1rem)] max-w-[320px] sm:w-80 rounded-[22px] shadow-2xl p-3.5 text-xs z-50 space-y-3 font-ubuntu border select-none ${
               theme === 'light'
                 ? 'bg-[#f4f4f4] border-black/15 text-slate-800 shadow-slate-900/30'
                 : 'bg-[#292929] border-white/10 text-slate-200'

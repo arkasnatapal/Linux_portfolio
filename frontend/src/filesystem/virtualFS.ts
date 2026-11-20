@@ -7,6 +7,7 @@
 
 import { PORTFOLIO_DATA } from '../config/portfolioData';
 import { ASCII_SILICON_DIE } from '../utils/asciiArt';
+import { ALL_CODE_FILES } from '../codes/codeRegistry';
 
 export interface FSNode {
   name: string;
@@ -50,6 +51,7 @@ Specialization: ${PORTFOLIO_DATA.engineer.specialization}
 Location:       ${PORTFOLIO_DATA.engineer.location}
 Phone:          ${PORTFOLIO_DATA.engineer.phone}
 Email:          ${PORTFOLIO_DATA.engineer.email}
+GitHub:         ${PORTFOLIO_DATA.engineer.github}
 LinkedIn:       ${PORTFOLIO_DATA.engineer.linkedin}
 
 SUMMARY:
@@ -135,7 +137,7 @@ Open for:       Full-Time VLSI Positions, ASIC Design Consulting & Collaboration
   const resumeText = `================================================================================
                      CURRICULUM VITAE — ARKASNATA PAL
 ================================================================================
-+91-8250495806 | arka4551@gmail.com | linkedin.com/in/arkasnata-pal-6a3682276
++91-8250495806 | arka4551@gmail.com | github.com/arkasnatapal | linkedin.com/in/arkasnata-pal-6a3682276
 
 EDUCATION
 • Jalpaiguri Government Engineering College
@@ -548,6 +550,148 @@ endmodule\n`,
                 size: resumeText.length,
                 modified: modDate,
                 content: resumeText,
+              },
+              codes: {
+                name: 'codes',
+                type: 'dir',
+                permissions: 'drwxr-xr-x',
+                owner: 'arka',
+                group: 'arka',
+                size: 4096,
+                modified: modDate,
+                children: {
+                  PWM: {
+                    name: 'PWM',
+                    type: 'dir',
+                    permissions: 'drwxr-xr-x',
+                    owner: 'arka',
+                    group: 'arka',
+                    size: 4096,
+                    modified: modDate,
+                    children: Object.fromEntries(
+                      ALL_CODE_FILES.filter(f => f.folder === 'PWM').map(f => [
+                        f.name,
+                        {
+                          name: f.name,
+                          type: 'file',
+                          permissions: '-r--r--r--',
+                          owner: 'arka',
+                          group: 'arka',
+                          size: f.size,
+                          modified: modDate,
+                          content: f.content,
+                        },
+                      ])
+                    ),
+                  },
+                  SPI: {
+                    name: 'SPI',
+                    type: 'dir',
+                    permissions: 'drwxr-xr-x',
+                    owner: 'arka',
+                    group: 'arka',
+                    size: 4096,
+                    modified: modDate,
+                    children: Object.fromEntries(
+                      ALL_CODE_FILES.filter(f => f.folder === 'SPI').map(f => [
+                        f.name,
+                        {
+                          name: f.name,
+                          type: 'file',
+                          permissions: '-r--r--r--',
+                          owner: 'arka',
+                          group: 'arka',
+                          size: f.size,
+                          modified: modDate,
+                          content: f.content,
+                        },
+                      ])
+                    ),
+                  },
+                  UART: {
+                    name: 'UART',
+                    type: 'dir',
+                    permissions: 'drwxr-xr-x',
+                    owner: 'arka',
+                    group: 'arka',
+                    size: 4096,
+                    modified: modDate,
+                    children: Object.fromEntries(
+                      ALL_CODE_FILES.filter(f => f.folder === 'UART').map(f => [
+                        f.name,
+                        {
+                          name: f.name,
+                          type: 'file',
+                          permissions: '-r--r--r--',
+                          owner: 'arka',
+                          group: 'arka',
+                          size: f.size,
+                          modified: modDate,
+                          content: f.content,
+                        },
+                      ])
+                    ),
+                  },
+                  projects: {
+                    name: 'projects',
+                    type: 'dir',
+                    permissions: 'drwxr-xr-x',
+                    owner: 'arka',
+                    group: 'arka',
+                    size: 4096,
+                    modified: modDate,
+                    children: {
+                      '8bit ALU': {
+                        name: '8bit ALU',
+                        type: 'dir',
+                        permissions: 'drwxr-xr-x',
+                        owner: 'arka',
+                        group: 'arka',
+                        size: 4096,
+                        modified: modDate,
+                        children: Object.fromEntries(
+                          ALL_CODE_FILES.filter(f => f.folder === 'projects/8bit ALU').map(f => [
+                            f.name,
+                            {
+                              name: f.name,
+                              type: 'file',
+                              permissions: '-r--r--r--',
+                              owner: 'arka',
+                              group: 'arka',
+                              size: f.size,
+                              modified: modDate,
+                              content: f.content,
+                            },
+                          ])
+                        ),
+                      },
+                      Traffic_Controller: {
+                        name: 'Traffic_Controller',
+                        type: 'dir',
+                        permissions: 'drwxr-xr-x',
+                        owner: 'arka',
+                        group: 'arka',
+                        size: 4096,
+                        modified: modDate,
+                        children: Object.fromEntries(
+                          ALL_CODE_FILES.filter(f => f.folder === 'projects/Traffic_Controller').map(f => [
+                            f.name,
+                            {
+                              name: f.name,
+                              type: 'file',
+                              permissions: '-r--r--r--',
+                              owner: 'arka',
+                              group: 'arka',
+                              size: f.size,
+                              modified: modDate,
+                              content: f.content,
+                            },
+                          ])
+                        ),
+                      },
+                    },
+                  },
+                },
               },
               projects: {
                 name: 'projects',

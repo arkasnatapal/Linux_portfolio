@@ -41,7 +41,7 @@ export const CalendarPopup: React.FC<CalendarPopupProps> = ({ onClose }) => {
   return (
     <div
       onClick={(e) => e.stopPropagation()}
-      className="fixed top-8 left-1/2 -translate-x-1/2 w-full max-w-lg bg-[#242424]/95 backdrop-blur-md border border-white/10 rounded-2xl shadow-2xl p-4 text-xs text-slate-200 font-ubuntu z-50 flex flex-col sm:flex-row gap-4"
+      className="fixed top-8 left-1/2 -translate-x-1/2 w-[calc(100vw-1rem)] max-w-lg bg-[#242424]/95 backdrop-blur-md border border-white/10 rounded-2xl shadow-2xl p-3 sm:p-4 text-xs text-slate-200 font-ubuntu z-50 flex flex-col sm:flex-row gap-4"
     >
       {/* Left: Notifications / Reminders */}
       <div className="flex-1 space-y-3 sm:border-r border-white/10 sm:pr-4">

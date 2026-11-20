@@ -26,6 +26,7 @@ export interface CommandContext {
   history: string[];
   clearTerminal: () => void;
   exitToLogin: () => void;
+  exitTerminal?: () => void;
 }
 
 export interface CommandOutput {
@@ -301,6 +302,10 @@ export const COMMAND_REGISTRY: Record<string, CommandHandler> = {
   },
 
   exit: (_, ctx) => {
+    if (ctx.exitTerminal) {
+      ctx.exitTerminal();
+      return { text: 'logout\n[Process completed]' };
+    }
     ctx.exitToLogin();
     return { text: 'Session terminated. Logging out of ARKA OS...' };
   },
@@ -1398,16 +1403,16 @@ slack (MET)                                         +2.3610 ns`}
   },
 
   github: () => {
-    window.open('https://github.com/arka-vlsi', '_blank');
+    window.open('https://github.com/arkasnatapal', '_blank');
     return {
-      text: 'Opening GitHub profile: https://github.com/arka-vlsi',
+      text: 'Opening GitHub profile: https://github.com/arkasnatapal',
     };
   },
 
   linkedin: () => {
-    window.open('https://linkedin.com/in/arka-vlsi', '_blank');
+    window.open('https://linkedin.com/in/arkasnata-pal-6a3682276', '_blank');
     return {
-      text: 'Opening LinkedIn profile: https://linkedin.com/in/arka-vlsi',
+      text: 'Opening LinkedIn profile: https://linkedin.com/in/arkasnata-pal-6a3682276',
     };
   },
 };

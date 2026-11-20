@@ -6,6 +6,7 @@
  * - Blue directory: #729fcf
  * - White colon and dollar: #ffffff
  * - Keyboard navigation (Tab, History Up/Down, Ctrl+C, Ctrl+L)
+ * - Mobile Touch Toolbar with quick-access commands and smooth execution
  */
 
 import React, { useState, useEffect, useRef } from 'react';
@@ -19,6 +20,7 @@ interface TerminalInputProps {
   history: string[];
   onSubmit: (command: string) => void;
   onClear: () => void;
+  onExit?: () => void;
 }
 
 export const TerminalInput: React.FC<TerminalInputProps> = ({
@@ -27,6 +29,7 @@ export const TerminalInput: React.FC<TerminalInputProps> = ({
   history,
   onSubmit,
   onClear,
+  onExit,
 }) => {
   const [inputVal, setInputVal] = useState<string>('');
   const [historyIndex, setHistoryIndex] = useState<number>(-1);
@@ -119,8 +122,19 @@ export const TerminalInput: React.FC<TerminalInputProps> = ({
     }
   };
 
+  const handleQuickCommand = (cmd: string) => {
+    if (cmd === 'exit' && onExit) {
+      onExit();
+      return;
+    }
+    setInputVal('');
+    setHistoryIndex(-1);
+    setAutocompleteSuggestions([]);
+    onSubmit(cmd);
+  };
+
   return (
-    <div className="space-y-2 font-ubuntu-mono text-sm mt-1">
+    <div className="space-y-2 font-ubuntu-mono text-sm mt-1 pb-2">
       {/* Autocomplete suggestions display */}
       {autocompleteSuggestions.length > 0 && (
         <div className="bg-black/50 border border-white/10 p-2 rounded text-xs">
@@ -138,7 +152,7 @@ export const TerminalInput: React.FC<TerminalInputProps> = ({
                   setAutocompleteSuggestions([]);
                   inputRef.current?.focus();
                 }}
-                className="px-2 py-0.5 rounded bg-[#4a1538] hover:bg-[#e95420] text-[#729fcf] hover:text-white font-ubuntu-mono transition-colors cursor-pointer"
+                className="px-2 py-0.5 rounded bg-[#4a1538] hover:bg-[#e95420] text-[#729fcf] hover:text-white font-ubuntu-mono transition-colors cursor-pointer touch-manipulation"
               >
                 {item}
               </button>
@@ -161,7 +175,7 @@ export const TerminalInput: React.FC<TerminalInputProps> = ({
         </span>
         <span className="text-white select-none mr-2 font-bold">$</span>
 
-        <div className="flex-1 min-w-[140px] relative flex items-center">
+        <div className="flex-1 min-w-[120px] relative flex items-center">
           <input
             ref={inputRef}
             type="text"
@@ -171,21 +185,22 @@ export const TerminalInput: React.FC<TerminalInputProps> = ({
             autoFocus
             spellCheck={false}
             autoCapitalize="none"
+            autoCorrect="off"
             autoComplete="off"
-            className="w-full bg-transparent border-none outline-none text-white font-ubuntu-mono text-sm p-0 m-0 focus:ring-0 caret-white"
+            className="w-full bg-transparent border-none outline-none text-white font-ubuntu-mono text-base sm:text-sm p-0 m-0 focus:ring-0 caret-white"
           />
         </div>
       </div>
 
-      {/* Mobile-Friendly Accessory Bar */}
-      <div className="flex sm:hidden items-center gap-1 pt-2 border-t border-white/10 overflow-x-auto text-[11px]">
+      {/* Mobile-Friendly Quick Accessory Bar */}
+      <div className="flex sm:hidden items-center gap-1.5 pt-2 border-t border-white/10 overflow-x-auto no-scrollbar text-[11px] py-1 select-none">
         <button
           onClick={() => {
             const result = getAutocomplete(inputVal, cwd, fs);
             setInputVal(result.completedLine);
             setAutocompleteSuggestions(result.options);
           }}
-          className="px-2.5 py-1 bg-black/40 text-slate-200 rounded border border-white/10 shrink-0 cursor-pointer"
+          className="px-2.5 py-1 bg-black/40 text-slate-200 rounded border border-white/10 shrink-0 cursor-pointer touch-manipulation active:scale-95"
         >
           Tab ⇥
         </button>
@@ -196,31 +211,45 @@ export const TerminalInput: React.FC<TerminalInputProps> = ({
             setHistoryIndex(nextIndex);
             setInputVal(history[nextIndex]);
           }}
-          className="px-2.5 py-1 bg-black/40 text-slate-200 rounded border border-white/10 shrink-0 cursor-pointer"
+          className="px-2.5 py-1 bg-black/40 text-slate-200 rounded border border-white/10 shrink-0 cursor-pointer touch-manipulation active:scale-95"
         >
           ↑ History
         </button>
         <button
-          onClick={() => {
-            if (historyIndex === -1) return;
-            const nextIndex = historyIndex + 1;
-            if (nextIndex >= history.length) {
-              setHistoryIndex(-1);
-              setInputVal('');
-            } else {
-              setHistoryIndex(nextIndex);
-              setInputVal(history[nextIndex]);
-            }
-          }}
-          className="px-2.5 py-1 bg-black/40 text-slate-200 rounded border border-white/10 shrink-0 cursor-pointer"
+          onClick={() => handleQuickCommand('ls -la')}
+          className="px-2.5 py-1 bg-[#4a1538] text-white font-medium rounded border border-white/10 shrink-0 cursor-pointer touch-manipulation active:scale-95"
         >
-          ↓
+          ls
+        </button>
+        <button
+          onClick={() => handleQuickCommand('neofetch')}
+          className="px-2.5 py-1 bg-[#4a1538] text-white font-medium rounded border border-white/10 shrink-0 cursor-pointer touch-manipulation active:scale-95"
+        >
+          neofetch
+        </button>
+        <button
+          onClick={() => handleQuickCommand('about')}
+          className="px-2.5 py-1 bg-[#4a1538] text-white font-medium rounded border border-white/10 shrink-0 cursor-pointer touch-manipulation active:scale-95"
+        >
+          about
+        </button>
+        <button
+          onClick={() => handleQuickCommand('projects')}
+          className="px-2.5 py-1 bg-[#4a1538] text-white font-medium rounded border border-white/10 shrink-0 cursor-pointer touch-manipulation active:scale-95"
+        >
+          projects
         </button>
         <button
           onClick={onClear}
-          className="px-2.5 py-1 bg-black/40 text-slate-200 rounded border border-white/10 shrink-0 cursor-pointer"
+          className="px-2.5 py-1 bg-black/40 text-slate-200 rounded border border-white/10 shrink-0 cursor-pointer touch-manipulation active:scale-95"
         >
           Clear
+        </button>
+        <button
+          onClick={() => handleQuickCommand('exit')}
+          className="px-2.5 py-1 bg-red-950/70 text-red-300 font-bold rounded border border-red-700/40 shrink-0 cursor-pointer touch-manipulation active:scale-95"
+        >
+          Exit ✕
         </button>
         <button
           onClick={() => {
@@ -228,7 +257,7 @@ export const TerminalInput: React.FC<TerminalInputProps> = ({
             setInputVal('');
             onSubmit(cmd);
           }}
-          className="px-3.5 py-1 bg-[#e95420] text-white font-bold rounded shrink-0 cursor-pointer ml-auto"
+          className="px-3.5 py-1 bg-[#e95420] text-white font-bold rounded shrink-0 cursor-pointer touch-manipulation active:scale-95 ml-auto"
         >
           Enter ↵
         </button>

@@ -128,20 +128,35 @@ export const YaruFilesIcon: React.FC<IconProps> = ({ className = 'w-6 h-6', size
   </svg>
 );
 
-// 5. Official VS Code Icon
+// 5. Official Microsoft Visual Studio Code Icon
 export const YaruVSCodeIcon: React.FC<IconProps> = ({ className = 'w-6 h-6', size }) => (
   <svg
-    viewBox="0 0 64 64"
-    fill="none"
+    viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
     className={className}
     style={size ? { width: size, height: size } : undefined}
   >
-    <path d="M47.2 4.8L35.4 16.4L18.6 3.6L12.4 8.2V55.8L18.6 60.4L35.4 47.6L47.2 59.2L55.8 55V9L47.2 4.8Z" fill="#0065a9" />
-    <path d="M47.2 4.8L35.4 16.4L24.8 24.8L35.4 32.8L47.2 4.8Z" fill="#007acc" opacity="0.85" />
-    <path d="M12.4 8.2L35.4 32L12.4 55.8V8.2Z" fill="#1f9cf0" />
-    <path d="M47.2 59.2L35.4 47.6L24.8 39.2L35.4 32.8L47.2 59.2Z" fill="#007acc" opacity="0.85" />
-    <path d="M55.8 9V55L47.2 59.2L35.4 47.6L47.2 4.8L55.8 9Z" fill="#005a9e" />
+    {/* Authentic Visual Studio Code Multi-Tone Folded Ribbon */}
+    <path
+      d="M23.15 2.587L18.21.21a1.494 1.494 0 0 0-1.705.29l-9.46 8.63-4.12-3.128a.999.999 0 0 0-1.276.057L.327 7.261A1 1 0 0 0 .32 8.704l4.135 3.3-4.135 3.301a1 1 0 0 0 .007 1.442l1.322 1.203c.376.342.94.364 1.276.057l4.12-3.128 9.46 8.63c.47.43 1.157.545 1.705.29l4.94-2.377A1.5 1.5 0 0 0 24 20.06V3.939a1.5 1.5 0 0 0-.85-1.352z"
+      fill="#0065a9"
+    />
+    <path
+      d="M18.21.21l-9.46 8.63 4.12 3.16 5.34-4.87V.21z"
+      fill="#007acc"
+    />
+    <path
+      d="M18.21 23.79l-9.46-8.63 4.12-3.16 5.34 4.87v6.92z"
+      fill="#1f9cf0"
+    />
+    <path
+      d="M18.21 7.13L10.826 12l7.384 4.87V7.13z"
+      fill="#005a9e"
+    />
+    <path
+      d="M23.15 2.587L18.21 7.13v9.74l4.94 4.54A1.5 1.5 0 0 0 24 20.06V3.939a1.5 1.5 0 0 0-.85-1.352z"
+      fill="#007acc"
+    />
   </svg>
 );
 

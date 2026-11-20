@@ -51,9 +51,9 @@ export const PDFViewerModal: React.FC<PDFViewerModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-5 bg-black/70 backdrop-blur-sm animate-fade-in font-ubuntu select-none">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-1 sm:p-5 bg-black/70 backdrop-blur-sm animate-fade-in font-ubuntu select-none">
       <div
-        className={`w-full max-w-4xl h-[92vh] flex flex-col rounded-xl shadow-2xl border overflow-hidden transition-colors ${
+        className={`w-full max-w-4xl h-[94dvh] sm:h-[92vh] flex flex-col rounded-xl shadow-2xl border overflow-hidden transition-colors ${
           theme === 'light'
             ? 'bg-[#f6f6f6] border-slate-300 text-slate-800'
             : 'bg-[#242424] border-black/60 text-slate-100'
@@ -180,7 +180,12 @@ export const PDFViewerModal: React.FC<PDFViewerModalProps> = ({
             </button>
             <button
               onClick={onClose}
-              className="w-7 h-7 ml-1 rounded-full bg-black/20 hover:bg-red-600 hover:text-white flex items-center justify-center text-xs transition-colors cursor-pointer"
+              onTouchEnd={(e) => {
+                e.stopPropagation();
+                e.preventDefault();
+                onClose();
+              }}
+              className="w-8 h-8 ml-1 rounded-full bg-black/20 hover:bg-red-600 hover:text-white flex items-center justify-center text-xs transition-colors cursor-pointer touch-manipulation active:scale-90"
               title="Close Viewer"
             >
               ✕
@@ -241,6 +246,15 @@ export const PDFViewerModal: React.FC<PDFViewerModalProps> = ({
                     className="text-blue-700 hover:underline cursor-pointer"
                   >
                     arka4551@gmail.com
+                  </a>
+                  <span className="text-neutral-400">|</span>
+                  <a
+                    href="https://github.com/arkasnatapal"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-blue-700 hover:underline cursor-pointer font-bold"
+                  >
+                    github.com/arkasnatapal
                   </a>
                   <span className="text-neutral-400">|</span>
                   <a

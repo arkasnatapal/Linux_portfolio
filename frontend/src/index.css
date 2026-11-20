@@ -64,10 +64,23 @@
   background-position: center;
 }
 
-/* Ubuntu Terminal Background: The iconic #300a24 Aubergine */
-.ubuntu-terminal-body {
-  background-color: rgba(48, 10, 36, 0.98);
+/* Print Screen & Anti-Theft Protection: Print mode renders blank page */
+@media print {
+  html, body, #root, * {
+    display: none !important;
+    visibility: hidden !important;
+  }
 }
+
+/* Hide scrollbars utility */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 
 .font-ubuntu {
   font-family: 'Ubuntu', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;

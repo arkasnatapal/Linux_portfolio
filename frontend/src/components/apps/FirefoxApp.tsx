@@ -90,6 +90,15 @@ export const FirefoxApp: React.FC = () => {
         </button>
         <button
           onClick={() => {
+            window.open('https://github.com/arkasnatapal', '_blank');
+          }}
+          className="flex items-center gap-1 hover:text-white cursor-pointer"
+        >
+          <span>🐙</span>
+          <span>GitHub</span>
+        </button>
+        <button
+          onClick={() => {
             setInputUrl('https://docs.xilinx.com');
             setPage('docs');
           }}

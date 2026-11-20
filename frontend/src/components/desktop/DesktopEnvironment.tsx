@@ -143,18 +143,19 @@ export const DesktopEnvironment: React.FC<DesktopEnvironmentProps> = ({
     const nextZ = highestZIndex + 1;
     setHighestZIndex(nextZ);
 
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
     const cascadeOffset = (windows.length % 6) * 30;
     const newWindow: WindowInstance = {
       id: `win-${appId}-${Date.now()}`,
       appId: appId === 'trash' ? 'files' : appId,
       title: def.title,
       isMinimized: false,
-      isMaximized: false,
+      isMaximized: isMobile ? true : false,
       zIndex: nextZ,
-      x: Math.max(80, Math.min(window.innerWidth - def.width - 40, 80 + cascadeOffset)),
-      y: Math.max(40, Math.min(window.innerHeight - def.height - 40, 50 + cascadeOffset)),
-      width: Math.min(window.innerWidth - 90, def.width),
-      height: Math.min(window.innerHeight - 80, def.height),
+      x: isMobile ? 0 : Math.max(80, Math.min(window.innerWidth - def.width - 40, 80 + cascadeOffset)),
+      y: isMobile ? 28 : Math.max(40, Math.min(window.innerHeight - def.height - 40, 50 + cascadeOffset)),
+      width: isMobile ? window.innerWidth : Math.min(window.innerWidth - 90, def.width),
+      height: isMobile ? window.innerHeight - 28 : Math.min(window.innerHeight - 80, def.height),
       params,
     };
 
@@ -227,14 +228,15 @@ export const DesktopEnvironment: React.FC<DesktopEnvironmentProps> = ({
       />
 
       {/* Desktop Body Canvas: Left Dock + Desktop Workspace */}
-      <div className="flex-1 flex flex-row overflow-hidden relative w-full h-[calc(100vh-1.75rem)]">
-        {/* Ubuntu Application Dock — Permanently Pinned Left Panel */}
+      <div className="flex-1 flex flex-row overflow-hidden relative w-full h-[calc(100dvh-1.75rem)]">
+        {/* Ubuntu Application Dock — Permanently Pinned Left Panel (Hides on Mobile when Window Active) */}
         <UbuntuDock
           runningAppIds={runningAppIds}
           activeAppId={activeWindow?.appId || null}
           onLaunchApp={handleLaunchApp}
           onToggleOverview={() => setIsOverviewOpen(!isOverviewOpen)}
           theme={theme}
+          hideOnMobile={windows.some(w => !w.isMinimized)}
         />
 
         {/* Desktop Workspace with Windows (Full Remaining Width & Height) */}
@@ -263,8 +265,10 @@ export const DesktopEnvironment: React.FC<DesktopEnvironmentProps> = ({
                   {win.appId === 'terminal' && (
                     <TerminalWindow
                       onLogout={onLogout}
+                      onClose={() => handleCloseWindow(win.id)}
                       isMaximized={win.isMaximized}
                       onToggleMaximize={() => handleToggleMaximize(win.id)}
+                      initialCwd={win.params?.cwd}
                     />
                   )}
 

@@ -3,9 +3,10 @@
  * 
  * Orchestrates the terminal window viewport, output log, active input prompt,
  * and command execution lifecycle within the iconic Ubuntu aubergine terminal canvas.
+ * Optimized for mobile touch, smooth scrolling, and instant window closure.
  */
 
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { TerminalOutput } from './TerminalOutput';
 import type { TerminalEntry } from './TerminalOutput';
 import { TerminalInput } from './TerminalInput';
@@ -15,6 +16,7 @@ import { COMMAND_REGISTRY } from '../shell/commandRegistry';
 
 interface TerminalWindowProps {
   onLogout: () => void;
+  onClose?: () => void;
   isMaximized?: boolean;
   onToggleMaximize?: () => void;
   initialCwd?: string;
@@ -22,15 +24,24 @@ interface TerminalWindowProps {
 
 export const TerminalWindow: React.FC<TerminalWindowProps> = ({
   onLogout,
+  onClose,
   initialCwd,
 }) => {
   const [cwd, setCwd] = useState<string>(initialCwd || virtualFS.defaultHome);
   const [entries, setEntries] = useState<TerminalEntry[]>([]);
   const [history, setHistory] = useState<string[]>([]);
+  const viewportRef = useRef<HTMLDivElement>(null);
 
   const handleClear = () => {
     setEntries([]);
   };
+
+  // Auto-scroll to bottom on new output
+  useEffect(() => {
+    if (viewportRef.current) {
+      viewportRef.current.scrollTop = viewportRef.current.scrollHeight;
+    }
+  }, [entries]);
 
   const handleExecute = (rawInput: string) => {
     const trimmed = rawInput.trim();
@@ -81,6 +92,7 @@ export const TerminalWindow: React.FC<TerminalWindowProps> = ({
         history,
         clearTerminal: handleClear,
         exitToLogin: onLogout,
+        exitTerminal: onClose || onLogout,
       });
     } else {
       // Command not found - authentic Linux error
@@ -105,9 +117,10 @@ export const TerminalWindow: React.FC<TerminalWindowProps> = ({
 
   return (
     <div className="flex-1 flex flex-col h-full w-full bg-[#300a24] overflow-hidden font-ubuntu-mono select-none">
-      {/* Terminal Viewport (Direct Ubuntu Aubergine Canvas as in Image 1) */}
+      {/* Terminal Viewport (Direct Ubuntu Aubergine Canvas) */}
       <div
-        className="flex-1 p-3 md:p-5 overflow-y-auto  font-ubuntu-mono select-text bg-[#300a24]"
+        ref={viewportRef}
+        className="flex-1 p-2 sm:p-4 md:p-5 overflow-y-auto font-ubuntu-mono select-text bg-[#300a24] touch-pan-y overscroll-contain"
         tabIndex={0}
       >
         <TerminalOutput entries={entries} />
@@ -117,6 +130,7 @@ export const TerminalWindow: React.FC<TerminalWindowProps> = ({
           history={history}
           onSubmit={handleExecute}
           onClear={handleClear}
+          onExit={onClose || onLogout}
         />
       </div>
     </div>

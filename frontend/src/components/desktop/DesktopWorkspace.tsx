@@ -15,7 +15,6 @@ import {
   YaruGithubIcon,
   YaruLinkedinIcon,
   YaruTerminalIcon,
-  YaruTrashIcon,
 } from './YaruIcons';
 
 interface DesktopWorkspaceProps {
@@ -59,7 +58,7 @@ export const DesktopWorkspace: React.FC<DesktopWorkspaceProps> = ({
       name: 'GitHub',
       icon: <YaruGithubIcon className="w-11 h-11" />,
       action: () => {
-        window.open('https://github.com/arka-vlsi', '_blank');
+        window.open('https://github.com/arkasnatapal', '_blank');
       },
     },
     {
@@ -88,12 +87,6 @@ export const DesktopWorkspace: React.FC<DesktopWorkspaceProps> = ({
       action: () => onOpenApp('terminal'),
     },
     {
-      id: 'trash',
-      name: 'Trash',
-      icon: <YaruTrashIcon className="w-11 h-11" />,
-      action: () => onOpenApp('files', { path: '/home/arka' }),
-    },
-    {
       id: 'readme',
       name: 'README.md',
       icon: (
@@ -105,15 +98,15 @@ export const DesktopWorkspace: React.FC<DesktopWorkspaceProps> = ({
       action: () => onOpenApp('textedit', { file: '/home/arka/README.md' }),
     },
     {
-      id: 'spi_master',
-      name: 'spi_master.v',
+      id: 'master_adv',
+      name: 'master_adv.v',
       icon: (
         <div className="w-10 h-11 bg-[#26a269] rounded p-1 text-[9px] font-mono font-bold text-white flex flex-col justify-between shadow">
           <span>HDL</span>
           <span className="text-[8px] text-emerald-200">.v</span>
         </div>
       ),
-      action: () => onOpenApp('vscode', { file: '/home/arka/projects/rtl/spi_master.v' }),
+      action: () => onOpenApp('vscode', { file: '/home/arka/codes/SPI/master_adv.v' }),
     },
   ];
 

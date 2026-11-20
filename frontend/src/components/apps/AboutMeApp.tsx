@@ -28,18 +28,18 @@ export const AboutMeApp: React.FC<AboutMeAppProps> = ({ theme = 'dark' }) => {
   const [isPdfModalOpen, setIsPdfModalOpen] = useState<boolean>(false);
 
   return (
-    <div className={`flex-1 flex h-full font-ubuntu select-none overflow-hidden transition-colors ${
+    <div className={`flex-1 flex flex-col md:flex-row h-full font-ubuntu select-none overflow-hidden transition-colors ${
       theme === 'light' ? 'bg-[#fafafa] text-slate-800' : 'bg-[#18181b] text-slate-100'
     }`}>
-      {/* Left Sidebar Navigation */}
-      <aside className={`w-44 md:w-48 flex flex-col justify-between py-3 shrink-0 transition-colors ${
-        theme === 'light' ? 'bg-[#ebebeb] border-r border-slate-300 text-slate-700' : 'bg-[#1f1f23] border-r border-black/40 text-slate-300'
+      {/* Navigation: Horizontal scrollable tab bar on mobile, vertical sidebar on desktop */}
+      <aside className={`w-full md:w-48 flex flex-row md:flex-col justify-between py-1.5 md:py-3 px-2 md:px-0 shrink-0 transition-colors border-b md:border-b-0 md:border-r ${
+        theme === 'light' ? 'bg-[#ebebeb] border-slate-300 text-slate-700' : 'bg-[#1f1f23] border-black/40 text-slate-300'
       }`}>
-        <div className="space-y-1">
+        <div className="flex flex-row md:flex-col gap-1 w-full overflow-x-auto no-scrollbar scroll-smooth py-0.5">
           {/* 1. About Me */}
           <button
             onClick={() => setActiveTab('about')}
-            className={`w-full flex items-center gap-2.5 px-3.5 py-2 text-xs font-medium transition-colors cursor-pointer text-left ${
+            className={`shrink-0 md:w-full flex items-center gap-1.5 md:gap-2.5 px-3 md:px-3.5 py-1.5 md:py-2 text-xs font-medium rounded-full md:rounded-none transition-colors cursor-pointer text-left whitespace-nowrap ${
               activeTab === 'about'
                 ? 'bg-[#e95420] text-white font-bold shadow-md'
                 : theme === 'light' ? 'text-slate-700 hover:bg-black/5 hover:text-black' : 'text-slate-300 hover:bg-white/5 hover:text-white'
@@ -52,7 +52,7 @@ export const AboutMeApp: React.FC<AboutMeAppProps> = ({ theme = 'dark' }) => {
           {/* 2. Education */}
           <button
             onClick={() => setActiveTab('education')}
-            className={`w-full flex items-center gap-2.5 px-3.5 py-2 text-xs font-medium transition-colors cursor-pointer text-left ${
+            className={`shrink-0 md:w-full flex items-center gap-1.5 md:gap-2.5 px-3 md:px-3.5 py-1.5 md:py-2 text-xs font-medium rounded-full md:rounded-none transition-colors cursor-pointer text-left whitespace-nowrap ${
               activeTab === 'education'
                 ? 'bg-[#e95420] text-white font-bold shadow-md'
                 : theme === 'light' ? 'text-slate-700 hover:bg-black/5 hover:text-black' : 'text-slate-300 hover:bg-white/5 hover:text-white'
@@ -65,7 +65,7 @@ export const AboutMeApp: React.FC<AboutMeAppProps> = ({ theme = 'dark' }) => {
           {/* 3. Skills */}
           <button
             onClick={() => setActiveTab('skills')}
-            className={`w-full flex items-center gap-2.5 px-3.5 py-2 text-xs font-medium transition-colors cursor-pointer text-left ${
+            className={`shrink-0 md:w-full flex items-center gap-1.5 md:gap-2.5 px-3 md:px-3.5 py-1.5 md:py-2 text-xs font-medium rounded-full md:rounded-none transition-colors cursor-pointer text-left whitespace-nowrap ${
               activeTab === 'skills'
                 ? 'bg-[#e95420] text-white font-bold shadow-md'
                 : theme === 'light' ? 'text-slate-700 hover:bg-black/5 hover:text-black' : 'text-slate-300 hover:bg-white/5 hover:text-white'
@@ -78,7 +78,7 @@ export const AboutMeApp: React.FC<AboutMeAppProps> = ({ theme = 'dark' }) => {
           {/* 4. Projects */}
           <button
             onClick={() => setActiveTab('projects')}
-            className={`w-full flex items-center gap-2.5 px-3.5 py-2 text-xs font-medium transition-colors cursor-pointer text-left ${
+            className={`shrink-0 md:w-full flex items-center gap-1.5 md:gap-2.5 px-3 md:px-3.5 py-1.5 md:py-2 text-xs font-medium rounded-full md:rounded-none transition-colors cursor-pointer text-left whitespace-nowrap ${
               activeTab === 'projects'
                 ? 'bg-[#e95420] text-white font-bold shadow-md'
                 : theme === 'light' ? 'text-slate-700 hover:bg-black/5 hover:text-black' : 'text-slate-300 hover:bg-white/5 hover:text-white'
@@ -91,7 +91,7 @@ export const AboutMeApp: React.FC<AboutMeAppProps> = ({ theme = 'dark' }) => {
           {/* 5. Achievements */}
           <button
             onClick={() => setActiveTab('achievements')}
-            className={`w-full flex items-center gap-2.5 px-3.5 py-2 text-xs font-medium transition-colors cursor-pointer text-left ${
+            className={`shrink-0 md:w-full flex items-center gap-1.5 md:gap-2.5 px-3 md:px-3.5 py-1.5 md:py-2 text-xs font-medium rounded-full md:rounded-none transition-colors cursor-pointer text-left whitespace-nowrap ${
               activeTab === 'achievements'
                 ? 'bg-[#e95420] text-white font-bold shadow-md'
                 : theme === 'light' ? 'text-slate-700 hover:bg-black/5 hover:text-black' : 'text-slate-300 hover:bg-white/5 hover:text-white'
@@ -104,7 +104,7 @@ export const AboutMeApp: React.FC<AboutMeAppProps> = ({ theme = 'dark' }) => {
           {/* 6. Resume */}
           <button
             onClick={() => setActiveTab('resume')}
-            className={`w-full flex items-center gap-2.5 px-3.5 py-2 text-xs font-medium transition-colors cursor-pointer text-left ${
+            className={`shrink-0 md:w-full flex items-center gap-1.5 md:gap-2.5 px-3 md:px-3.5 py-1.5 md:py-2 text-xs font-medium rounded-full md:rounded-none transition-colors cursor-pointer text-left whitespace-nowrap ${
               activeTab === 'resume'
                 ? 'bg-[#e95420] text-white font-bold shadow-md'
                 : theme === 'light' ? 'text-slate-700 hover:bg-black/5 hover:text-black' : 'text-slate-300 hover:bg-white/5 hover:text-white'
@@ -115,8 +115,21 @@ export const AboutMeApp: React.FC<AboutMeAppProps> = ({ theme = 'dark' }) => {
           </button>
         </div>
 
-        {/* Bottom: LinkedIn & Contact */}
-        <div className={`px-3 pt-2 border-t space-y-1.5 ${theme === 'light' ? 'border-black/10' : 'border-white/5'}`}>
+        {/* Bottom Desktop Navigation: GitHub, LinkedIn & Contact */}
+        <div className={`hidden md:block px-3 pt-2 border-t space-y-1.5 ${theme === 'light' ? 'border-black/10' : 'border-white/5'}`}>
+          <a
+            href={PORTFOLIO_DATA.engineer.github}
+            target="_blank"
+            rel="noreferrer"
+            className={`w-full flex items-center justify-center gap-1.5 py-1.5 px-3 rounded-md text-xs font-medium transition-colors cursor-pointer border ${
+              theme === 'light'
+                ? 'bg-white hover:bg-slate-100 border-slate-300 text-slate-700 shadow-sm'
+                : 'bg-[#25252b] hover:bg-[#2d2d34] border-white/10 text-slate-300 hover:text-white'
+            }`}
+          >
+            <span className="text-white text-xs font-bold">🐙</span>
+            <span>GitHub Profile</span>
+          </a>
           <a
             href={PORTFOLIO_DATA.engineer.linkedin}
             target="_blank"
@@ -134,19 +147,19 @@ export const AboutMeApp: React.FC<AboutMeAppProps> = ({ theme = 'dark' }) => {
       </aside>
 
       {/* Right Main Content Pane */}
-      <main className={`flex-1 p-6 md:p-8 overflow-y-auto transition-colors ${
+      <main className={`flex-1 p-4 sm:p-6 md:p-8 overflow-y-auto transition-colors ${
         theme === 'light' ? 'bg-[#ffffff] text-slate-800' : 'bg-[#121214] text-slate-200'
       }`}>
         {/* TAB 1: ABOUT ME */}
         {activeTab === 'about' && (
-          <div className="max-w-xl mx-auto flex flex-col items-center text-center space-y-6 animate-fade-in">
+          <div className="max-w-xl mx-auto flex flex-col items-center text-center space-y-5 sm:space-y-6 animate-fade-in">
             {/* Top Avatar with "hi" badge */}
             <div className="relative mt-2">
-              <div className="w-24 h-24 rounded-full bg-gradient-to-tr from-[#e95420] to-[#77216F] p-1 shadow-2xl">
+              <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-gradient-to-tr from-[#e95420] to-[#77216F] p-1 shadow-2xl">
                 <div className={`w-full h-full rounded-full flex items-center justify-center overflow-hidden ${
                   theme === 'light' ? 'bg-white' : 'bg-[#1e1e24]'
                 }`}>
-                  <div className="text-4xl select-none">👨‍💻</div>
+                  <div className="text-3xl sm:text-4xl select-none">👨‍💻</div>
                 </div>
               </div>
               <div className="absolute -top-1 -right-3 bg-white text-black font-extrabold text-[11px] px-2 py-0.5 rounded-full shadow-lg border border-black/10 select-none">
@@ -155,19 +168,19 @@ export const AboutMeApp: React.FC<AboutMeAppProps> = ({ theme = 'dark' }) => {
             </div>
 
             {/* Headline matching user reference */}
-            <div className="space-y-1">
-              <h1 className={`text-2xl md:text-3xl font-normal tracking-tight ${
+            <div className="space-y-1 px-1">
+              <h1 className={`text-xl sm:text-2xl md:text-3xl font-normal tracking-tight ${
                 theme === 'light' ? 'text-slate-900' : 'text-white'
               }`}>
                 my name is <strong className="font-extrabold">{PORTFOLIO_DATA.engineer.fullName}</strong> ,
               </h1>
-              <h2 className="text-2xl md:text-3xl font-bold text-[#e02460] tracking-tight">
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#e02460] tracking-tight">
                 I'm a Digital VLSI Engineer!
               </h2>
             </div>
 
             {/* Divider with centered bullet */}
-            <div className="w-full flex items-center justify-center my-2 max-w-xs">
+            <div className="w-full flex items-center justify-center my-1 sm:my-2 max-w-xs">
               <div className={`flex-1 h-[1px] ${theme === 'light' ? 'bg-slate-300' : 'bg-slate-700'}`} />
               <div className={`w-2.5 h-2.5 rounded-full mx-3 shadow-[0_0_8px_rgba(255,255,255,0.8)] ${
                 theme === 'light' ? 'bg-[#e95420]' : 'bg-white'
@@ -176,43 +189,65 @@ export const AboutMeApp: React.FC<AboutMeAppProps> = ({ theme = 'dark' }) => {
             </div>
 
             {/* Emoji Bullet List */}
-            <div className={`w-full text-left space-y-4 text-xs md:text-sm leading-relaxed font-sans pt-1 ${
+            <div className={`w-full text-left space-y-3.5 sm:space-y-4 text-xs sm:text-sm leading-relaxed font-sans pt-1 ${
               theme === 'light' ? 'text-slate-700' : 'text-slate-300'
             }`}>
               <div className="flex items-start gap-3">
-                <span className="text-lg leading-none shrink-0">🏫</span>
+                <span className="text-base sm:text-lg leading-none shrink-0">🏫</span>
                 <p>
                   I'm a <strong className={theme === 'light' ? 'text-slate-950 font-bold' : 'text-white font-bold'}>B.Tech Electronics and Communication Engineering undergraduate</strong> at <strong>Jalpaiguri Government Engineering College</strong> (2024 - 2028, SGPA: 8.14).
                 </p>
               </div>
 
               <div className="flex items-start gap-3">
-                <span className="text-lg leading-none shrink-0">🏆</span>
+                <span className="text-base sm:text-lg leading-none shrink-0">🏆</span>
                 <p>
                   <strong className={theme === 'light' ? 'text-slate-950 font-bold' : 'text-white font-bold'}>National Finalist at Smart India Hackathon 2024 (SIH 2024)</strong> and completed the <strong>NPTEL Course in Digital Design Using Verilog (IIT Guwahati)</strong> with <strong>Elite Certification</strong>.
                 </p>
               </div>
 
               <div className="flex items-start gap-3">
-                <span className="text-lg leading-none shrink-0">⚡</span>
+                <span className="text-base sm:text-lg leading-none shrink-0">⚡</span>
                 <p>
                   My core technical expertise centers on <strong className={theme === 'light' ? 'text-slate-950 font-bold' : 'text-white font-bold'}>Verilog HDL</strong>, Digital Electronics, Logic Design, Electronic Devices, and Signals & Systems.
                 </p>
               </div>
 
               <div className="flex items-start gap-3">
-                <span className="text-lg leading-none shrink-0">💻</span>
+                <span className="text-base sm:text-lg leading-none shrink-0">💻</span>
                 <p>
                   Hands-on engineering projects include a <strong className={theme === 'light' ? 'text-slate-950 font-bold' : 'text-white font-bold'}>Multi-Mode Parameterized SPI Master Controller</strong> supporting all 4 SPI modes, a <strong className={theme === 'light' ? 'text-slate-950 font-bold' : 'text-white font-bold'}>UART Transceiver</strong> at 9600 baud, a <strong className={theme === 'light' ? 'text-slate-950 font-bold' : 'text-white font-bold'}>PWM Generator with dynamic duty cycle control</strong>, and a <strong className={theme === 'light' ? 'text-slate-950 font-bold' : 'text-white font-bold'}>Synchronous FIFO</strong> using Xilinx Vivado, Icarus Verilog, and GTKWave.
                 </p>
               </div>
 
               <div className="flex items-start gap-3">
-                <span className="text-lg leading-none shrink-0">🌟</span>
+                <span className="text-base sm:text-lg leading-none shrink-0">🌟</span>
                 <p>
                   Areas of Interest: <strong className={theme === 'light' ? 'text-slate-950 font-bold' : 'text-white font-bold'}>Digital VLSI Design | RTL Design and Verification | FPGA Development | Analog VLSI Design</strong>.
                 </p>
               </div>
+            </div>
+
+            {/* Mobile-Only Social Connect Bar */}
+            <div className="flex md:hidden items-center justify-center gap-3 pt-3 w-full">
+              <a
+                href={PORTFOLIO_DATA.engineer.github}
+                target="_blank"
+                rel="noreferrer"
+                className="flex-1 flex items-center justify-center gap-2 py-2 px-3 rounded-lg text-xs font-semibold bg-[#25252b] hover:bg-[#2d2d34] border border-white/10 text-white shadow"
+              >
+                <span>🐙</span>
+                <span>GitHub</span>
+              </a>
+              <a
+                href={PORTFOLIO_DATA.engineer.linkedin}
+                target="_blank"
+                rel="noreferrer"
+                className="flex-1 flex items-center justify-center gap-2 py-2 px-3 rounded-lg text-xs font-semibold bg-[#0077b5]/20 hover:bg-[#0077b5]/30 border border-[#0077b5]/40 text-[#70b5f9] shadow"
+              >
+                <span>💼</span>
+                <span>LinkedIn</span>
+              </a>
             </div>
           </div>
         )}
@@ -488,6 +523,16 @@ export const AboutMeApp: React.FC<AboutMeAppProps> = ({ theme = 'dark' }) => {
               >
                 <span>📥</span>
                 <span>Download Resume (PDF)</span>
+              </a>
+
+              <a
+                href={PORTFOLIO_DATA.engineer.github}
+                target="_blank"
+                rel="noreferrer"
+                className="px-5 py-2.5 bg-[#24292e] hover:bg-[#2f363d] text-white font-bold rounded-xl transition-all cursor-pointer text-xs flex items-center gap-2 border border-white/10"
+              >
+                <span>🐙</span>
+                <span>GitHub Profile</span>
               </a>
 
               <a

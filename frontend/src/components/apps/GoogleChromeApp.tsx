@@ -30,13 +30,6 @@ export const GoogleChromeApp: React.FC = () => {
       displayUrl: 'https://www.google.com',
       isLoading: false,
     },
-    {
-      id: 'tab-2',
-      title: 'ARKA VLSI Portfolio',
-      url: 'https://arka-vlsi.dev',
-      displayUrl: 'https://arka-vlsi.dev',
-      isLoading: false,
-    },
   ]);
   const [activeTabId, setActiveTabId] = useState<string>('tab-1');
   const [inputUrl, setInputUrl] = useState<string>('https://www.google.com');
@@ -297,52 +290,6 @@ export const GoogleChromeApp: React.FC = () => {
         </div>
       </div>
 
-      {/* Bookmarks Bar */}
-      <div className="h-7 bg-[#292a2d] px-3 flex items-center gap-4 text-xs text-slate-300 border-b border-black/20 shrink-0 overflow-x-auto">
-        <button
-          onClick={() => handleNavigate('chrome://newtab')}
-          className="flex items-center gap-1 hover:text-white cursor-pointer hover:bg-white/5 px-2 py-0.5 rounded transition-colors shrink-0"
-        >
-          <span>🔍</span>
-          <span>Google Search</span>
-        </button>
-        <button
-          onClick={() => handleNavigate('https://arka-vlsi.dev')}
-          className="flex items-center gap-1 hover:text-white cursor-pointer hover:bg-white/5 px-2 py-0.5 rounded transition-colors shrink-0"
-        >
-          <span>⚡</span>
-          <span>ARKA Overview</span>
-        </button>
-        <button
-          onClick={() => handleNavigate('https://github.com/arka-vlsi')}
-          className="flex items-center gap-1 hover:text-white cursor-pointer hover:bg-white/5 px-2 py-0.5 rounded transition-colors shrink-0"
-        >
-          <span>🐙</span>
-          <span>GitHub</span>
-        </button>
-        <button
-          onClick={() => handleNavigate('https://linkedin.com/in/arkasnata-pal-6a3682276')}
-          className="flex items-center gap-1 hover:text-white cursor-pointer hover:bg-white/5 px-2 py-0.5 rounded transition-colors shrink-0"
-        >
-          <span>💼</span>
-          <span>LinkedIn</span>
-        </button>
-        <button
-          onClick={() => handleNavigate('https://docs.xilinx.com')}
-          className="flex items-center gap-1 hover:text-white cursor-pointer hover:bg-white/5 px-2 py-0.5 rounded transition-colors shrink-0"
-        >
-          <span>📘</span>
-          <span>Vivado Docs</span>
-        </button>
-        <button
-          onClick={() => handleNavigate('https://en.wikipedia.org/wiki/Very_Large_Scale_Integration')}
-          className="flex items-center gap-1 hover:text-white cursor-pointer hover:bg-white/5 px-2 py-0.5 rounded transition-colors shrink-0"
-        >
-          <span>🌐</span>
-          <span>VLSI Wikipedia</span>
-        </button>
-      </div>
-
       {/* Loading Progress Bar */}
       {activeTab.isLoading && (
         <div className="h-0.5 w-full bg-[#1a73e8] animate-pulse shrink-0" />
@@ -393,10 +340,9 @@ export const GoogleChromeApp: React.FC = () => {
             </div>
 
             {/* Quick Shortcut Tiles */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 w-full max-w-lg justify-items-center">
+            <div className="grid grid-cols-3 gap-4 w-full max-w-md justify-items-center">
               {[
-                { name: 'ARKA Portfolio', url: 'https://arka-vlsi.dev', icon: '⚡', color: 'bg-purple-900/60' },
-                { name: 'GitHub', url: 'https://github.com/arka-vlsi', icon: '🐙', color: 'bg-zinc-800' },
+                { name: 'GitHub', url: 'https://github.com/arkasnatapal', icon: '🐙', color: 'bg-zinc-800' },
                 { name: 'LinkedIn', url: 'https://linkedin.com/in/arkasnata-pal-6a3682276', icon: '💼', color: 'bg-blue-900/60' },
                 { name: 'VLSI Wiki', url: 'https://en.wikipedia.org/wiki/Very_Large_Scale_Integration', icon: '🌐', color: 'bg-emerald-900/60' },
               ].map(tile => (
