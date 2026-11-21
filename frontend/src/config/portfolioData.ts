@@ -33,9 +33,9 @@ export const PORTFOLIO_DATA = {
     fullName: "Arkasnata Pal",
     handle: "arka",
     hostname: "vlsi-workstation",
-    title: "Digital VLSI Engineer",
+    title: "Digital VLSI Enthusiast",
     tagline: "Digital VLSI Design | RTL to GDSII Flow",
-    specialization: "Digital VLSI Design | RTL Design and Verification | FPGA Development | Analog VLSI Design",
+    specialization: "Digital VLSI Design | RTL Design and Verification | FPGA Development | RTL to GDSII",
     email: "arka4551@gmail.com",
     phone: "+91-8250495806",
     github: "https://github.com/arkasnatapal",
@@ -46,8 +46,8 @@ export const PORTFOLIO_DATA = {
   },
 
   system: {
-    osName: "ARKA OS 6.0 LTS",
-    kernel: "Linux 6.8.0-45-generic-vlsi-rt",
+    osName: "UBUNTU 24.04",
+    kernel: "6.8.0-45-generic",
     arch: "x86_64 / FPGA",
     shell: "arka-bash v5.2.21(1)-release",
     host: "VLSI Engineering Workstation (Xilinx Vivado / Verilog HDL)",
@@ -214,7 +214,7 @@ export const PORTFOLIO_DATA = {
         "Simulation": "Xilinx Vivado & GTKWave Verified",
       },
       files: ["master.v", "master_adv.v", "spi_slave_model.v", "test.v"],
-      githubUrl: "https://github.com/arkasnatapal/spi-master-controller",
+      githubUrl: "",
     },
     {
       id: "uart-transceiver",
@@ -236,7 +236,7 @@ export const PORTFOLIO_DATA = {
         "Verification": "Xilinx Vivado Simulation",
       },
       files: ["UART.v", "transmitter_module.v", "receiver_module.v", "baudrate_generator.v"],
-      githubUrl: "https://github.com/arkasnatapal/uart-verilog",
+      githubUrl: "",
     },
     {
       id: "pwm-generator",
@@ -258,7 +258,7 @@ export const PORTFOLIO_DATA = {
         "Simulation": "Vivado Waveform Analysis",
       },
       files: ["top.v", "toptb.v", "top_prac.v"],
-      githubUrl: "https://github.com/arkasnatapal/pwm-generator-verilog",
+      githubUrl: "",
     },
     {
       id: "synchronous-fifo",
@@ -280,7 +280,7 @@ export const PORTFOLIO_DATA = {
         "Simulation": "Vivado Timing and Corner-case Simulation",
       },
       files: ["sync_fifo.v", "fifo_mem.v", "sync_fifo_tb.v"],
-      githubUrl: "https://github.com/arkasnatapal/sync-fifo-verilog",
+      githubUrl: "",
     },
   ],
 

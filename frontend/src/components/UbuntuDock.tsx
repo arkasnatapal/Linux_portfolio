@@ -54,7 +54,7 @@ export const UbuntuDock: React.FC<UbuntuDockProps> = ({
     { id: 'vscode', name: 'Visual Studio Code', icon: <YaruVSCodeIcon className="w-8 h-8" /> },
     { id: 'chrome', name: 'Google Chrome', icon: <YaruChromeIcon className="w-8 h-8" /> },
     { id: 'textedit', name: 'Text Editor', icon: <YaruTextEditorIcon className="w-8 h-8" /> },
-    { id: 'imageviewer', name: 'Image Viewer', icon: <YaruImageViewerIcon className="w-8 h-8" /> },
+    { id: 'imageviewer', name: 'Gallery (Photos)', icon: <YaruImageViewerIcon className="w-8 h-8" /> },
     { id: 'music', name: 'Music', icon: <YaruMusicIcon className="w-8 h-8" /> },
     { id: 'settings', name: 'Settings', icon: <YaruSettingsIcon className="w-8 h-8" /> },
   ];

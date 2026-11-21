@@ -44,12 +44,6 @@ export const GNOMETopBar: React.FC<GNOMETopBarProps> = ({
   const { currentTrack, isPlaying } = useMusicPlayer();
   const [timeStr, setTimeStr] = useState<string>('');
   const [showQuickSettings, setShowQuickSettings] = useState<boolean>(false);
-  const [wifiEnabled, setWifiEnabled] = useState<boolean>(true);
-  const [bluetoothEnabled, setBluetoothEnabled] = useState<boolean>(true);
-  const [powerMode, setPowerMode] = useState<'Balanced' | 'Performance' | 'Power Saver'>('Balanced');
-  const [nightLight, setNightLight] = useState<boolean>(false);
-  const [doNotDisturb, setDoNotDisturb] = useState<boolean>(false);
-  const [showScreenshotFlash, setShowScreenshotFlash] = useState<boolean>(false);
   const [networkInfo, setNetworkInfo] = useState<{ ssid: string; status: string; ip: string }>({
     ssid: 'Free Bird',
     status: 'Connected',
@@ -219,24 +213,20 @@ export const GNOMETopBar: React.FC<GNOMETopBarProps> = ({
             <div className="flex items-center justify-between px-0.5">
               {/* Left Group: Screenshot Tool & Settings */}
               <div className="flex items-center gap-2">
-                {/* Screenshot Button */}
-                <button
-                  onClick={() => {
-                    setShowScreenshotFlash(true);
-                    setTimeout(() => setShowScreenshotFlash(false), 250);
-                  }}
-                  title="Take Screenshot"
-                  className={`w-9 h-9 rounded-full flex items-center justify-center transition-colors cursor-pointer ${
+                {/* Screenshot Button (Unclickable) */}
+                <div
+                  className={`w-9 h-9 rounded-full flex items-center justify-center select-none cursor-default ${
                     theme === 'light'
-                      ? 'bg-black/10 hover:bg-black/15 text-slate-700 hover:text-black'
-                      : 'bg-[#3b3b3b] hover:bg-[#4a4a4a] text-slate-200 hover:text-white'
+                      ? 'bg-black/10 text-slate-700'
+                      : 'bg-[#3b3b3b] text-slate-200'
                   }`}
+                  aria-hidden="true"
                 >
                   <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
                     <circle cx="12" cy="13" r="4"/>
                   </svg>
-                </button>
+                </div>
 
                 {/* Settings Gear Button */}
                 <button
@@ -361,16 +351,11 @@ export const GNOMETopBar: React.FC<GNOMETopBarProps> = ({
               </div>
             </div>
 
-            {/* Quick Toggle Grid: 2 Columns x 3 Rows (Matching Image 2 exactly) */}
+            {/* Quick Toggle Grid: 2 Columns x 3 Rows */}
             <div className="grid grid-cols-2 gap-2 pt-1">
-              {/* Row 1, Col 1: Wi-Fi Tile (Active Orange in Image 2) */}
-              <button
-                onClick={() => setWifiEnabled(!wifiEnabled)}
-                className={`h-11 px-3 rounded-2xl flex items-center justify-between cursor-pointer transition-colors shadow-sm text-left group ${
-                  wifiEnabled
-                    ? 'bg-[#e95420] text-white hover:bg-[#ff6530]'
-                    : theme === 'light' ? 'bg-black/10 text-slate-700 hover:bg-black/15' : 'bg-[#3b3b3b] text-slate-300 hover:bg-[#484848]'
-                }`}
+              {/* Row 1, Col 1: Wi-Fi Tile (Unclickable) */}
+              <div
+                className="h-11 px-3 rounded-2xl flex items-center justify-between cursor-default select-none shadow-sm text-left bg-[#e95420] text-white"
               >
                 <div className="flex items-center gap-2.5 overflow-hidden">
                   <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="currentColor">
@@ -378,22 +363,17 @@ export const GNOMETopBar: React.FC<GNOMETopBarProps> = ({
                   </svg>
                   <div className="flex flex-col overflow-hidden">
                     <span className="font-bold text-xs leading-tight">Wi-Fi</span>
-                    <span className="text-[10px] leading-tight truncate opacity-85">{wifiEnabled ? networkInfo.ssid : 'Off'}</span>
+                    <span className="text-[10px] leading-tight truncate opacity-85">{networkInfo.ssid || 'Offline'}</span>
                   </div>
                 </div>
-                <svg className="w-3.5 h-3.5 opacity-70 group-hover:opacity-100 shrink-0 ml-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <svg className="w-3.5 h-3.5 opacity-70 shrink-0 ml-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <polyline points="9 18 15 12 9 6"/>
                 </svg>
-              </button>
+              </div>
 
-              {/* Row 1, Col 2: Bluetooth Tile (Active Orange in Image 2) */}
-              <button
-                onClick={() => setBluetoothEnabled(!bluetoothEnabled)}
-                className={`h-11 px-3 rounded-2xl flex items-center justify-between cursor-pointer transition-colors shadow-sm text-left group ${
-                  bluetoothEnabled
-                    ? 'bg-[#e95420] text-white hover:bg-[#ff6530]'
-                    : theme === 'light' ? 'bg-black/10 text-slate-700 hover:bg-black/15' : 'bg-[#3b3b3b] text-slate-300 hover:bg-[#484848]'
-                }`}
+              {/* Row 1, Col 2: Bluetooth Tile (Unclickable) */}
+              <div
+                className="h-11 px-3 rounded-2xl flex items-center justify-between cursor-default select-none shadow-sm text-left bg-[#e95420] text-white"
               >
                 <div className="flex items-center gap-2.5 overflow-hidden">
                   <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="currentColor">
@@ -401,22 +381,16 @@ export const GNOMETopBar: React.FC<GNOMETopBarProps> = ({
                   </svg>
                   <span className="font-bold text-xs leading-tight">Bluetooth</span>
                 </div>
-                <svg className="w-3.5 h-3.5 opacity-70 group-hover:opacity-100 shrink-0 ml-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <svg className="w-3.5 h-3.5 opacity-70 shrink-0 ml-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <polyline points="9 18 15 12 9 6"/>
                 </svg>
-              </button>
+              </div>
 
-              {/* Row 2, Col 1: Power Mode Tile (Balanced, Grey in Image 2) */}
-              <button
-                onClick={() => {
-                  setPowerMode(prev => prev === 'Balanced' ? 'Performance' : prev === 'Performance' ? 'Power Saver' : 'Balanced');
-                }}
-                className={`h-11 px-3 rounded-2xl flex items-center justify-between cursor-pointer transition-colors shadow-sm text-left group ${
-                  powerMode === 'Performance'
-                    ? 'bg-[#e95420] text-white hover:bg-[#ff6530]'
-                    : theme === 'light' ? 'bg-black/10 text-slate-700 hover:bg-black/15' : 'bg-[#3b3b3b] text-slate-200 hover:bg-[#484848]'
+              {/* Row 2, Col 1: Power Mode Tile (Unclickable) */}
+              <div
+                className={`h-11 px-3 rounded-2xl flex items-center justify-between cursor-default select-none shadow-sm text-left ${
+                  theme === 'light' ? 'bg-black/10 text-slate-700' : 'bg-[#3b3b3b] text-slate-200'
                 }`}
-                title="Click to toggle Power Mode"
               >
                 <div className="flex items-center gap-2.5 overflow-hidden">
                   <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="currentColor">
@@ -424,30 +398,27 @@ export const GNOMETopBar: React.FC<GNOMETopBarProps> = ({
                   </svg>
                   <div className="flex flex-col overflow-hidden">
                     <span className="font-bold text-xs leading-tight">Power Mode</span>
-                    <span className="text-[10px] leading-tight opacity-75">{powerMode}</span>
+                    <span className="text-[10px] leading-tight opacity-75">Balanced</span>
                   </div>
                 </div>
-                <svg className="w-3.5 h-3.5 opacity-70 group-hover:opacity-100 shrink-0 ml-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <svg className="w-3.5 h-3.5 opacity-70 shrink-0 ml-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <polyline points="9 18 15 12 9 6"/>
                 </svg>
-              </button>
+              </div>
 
-              {/* Row 2, Col 2: Night Light Tile (Grey in Image 2) */}
-              <button
-                onClick={() => setNightLight(!nightLight)}
-                className={`h-11 px-3 rounded-2xl flex items-center gap-2.5 cursor-pointer transition-colors shadow-sm text-left ${
-                  nightLight
-                    ? 'bg-[#e95420] text-white hover:bg-[#ff6530]'
-                    : theme === 'light' ? 'bg-black/10 text-slate-700 hover:bg-black/15' : 'bg-[#3b3b3b] text-slate-200 hover:bg-[#484848]'
+              {/* Row 2, Col 2: Night Light Tile (Unclickable) */}
+              <div
+                className={`h-11 px-3 rounded-2xl flex items-center gap-2.5 cursor-default select-none shadow-sm text-left ${
+                  theme === 'light' ? 'bg-black/10 text-slate-700' : 'bg-[#3b3b3b] text-slate-200'
                 }`}
               >
                 <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z"/>
                 </svg>
                 <span className="font-bold text-xs leading-tight">Night Light</span>
-              </button>
+              </div>
 
-              {/* Row 3, Col 1: Dark Style Tile (Active Orange in Image 2) */}
+              {/* Row 3, Col 1: Dark Style Tile (Active Orange in Image 2 - Clickable) */}
               <button
                 onClick={onThemeToggle}
                 className={`h-11 px-3 rounded-2xl flex items-center gap-2.5 cursor-pointer transition-colors shadow-sm text-left ${
@@ -465,29 +436,21 @@ export const GNOMETopBar: React.FC<GNOMETopBarProps> = ({
                 </span>
               </button>
 
-              {/* Row 3, Col 2: Do Not Disturb Tile (Grey in Image 2) */}
-              <button
-                onClick={() => setDoNotDisturb(!doNotDisturb)}
-                className={`h-11 px-3 rounded-2xl flex items-center gap-2.5 cursor-pointer transition-colors shadow-sm text-left ${
-                  doNotDisturb
-                    ? 'bg-[#e95420] text-white hover:bg-[#ff6530]'
-                    : theme === 'light' ? 'bg-black/10 text-slate-700 hover:bg-black/15' : 'bg-[#3b3b3b] text-slate-200 hover:bg-[#484848]'
+              {/* Row 3, Col 2: Do Not Disturb Tile (Unclickable) */}
+              <div
+                className={`h-11 px-3 rounded-2xl flex items-center gap-2.5 cursor-default select-none shadow-sm text-left ${
+                  theme === 'light' ? 'bg-black/10 text-slate-700' : 'bg-[#3b3b3b] text-slate-200'
                 }`}
               >
                 <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z"/>
                 </svg>
                 <span className="font-bold text-xs leading-tight">Do Not Disturb</span>
-              </button>
+              </div>
             </div>
           </div>
         )}
       </div>
-
-      {/* Screen Shutter Flash Animation on Screenshot Click */}
-      {showScreenshotFlash && (
-        <div className="fixed inset-0 bg-white/70 pointer-events-none z-[100] animate-fade-out" />
-      )}
     </header>
   );
 };

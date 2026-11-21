@@ -95,10 +95,10 @@ export const ShutdownScreen: React.FC<ShutdownScreenProps> = ({ onPowerOn }) => 
         {/* Status Text */}
         <div className="space-y-1.5">
           <h2 className="text-base font-bold text-slate-200 tracking-wide">
-            ARKA VLSI Workstation is Powered Off
+            Arka's Ubuntu is Powered Off
           </h2>
           <p className="text-xs text-slate-500 font-mono">
-            Click the power button to boot ARKA OS
+            Click the power button to boot the OS
           </p>
         </div>
 

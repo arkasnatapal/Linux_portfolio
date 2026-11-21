@@ -141,7 +141,7 @@ const DesktopEnvironmentInner: React.FC<DesktopEnvironmentProps> = ({
       firefox: { title: 'Google Chrome', width: 940, height: 600 },
       settings: { title: 'Settings', width: 720, height: 500 },
       textedit: { title: 'Text Editor', width: 700, height: 480 },
-      imageviewer: { title: 'Image Viewer', width: 760, height: 520 },
+      imageviewer: { title: 'Gallery — Photos', width: 860, height: 580 },
       music: { title: 'Rhythmbox Music Player', width: 660, height: 490 },
       video: { title: 'Totem Video Player', width: 700, height: 460 },
       trash: { title: 'Trash — Files', width: 740, height: 480 },

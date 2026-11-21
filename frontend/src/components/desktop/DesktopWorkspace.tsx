@@ -69,17 +69,17 @@ export const DesktopWorkspace: React.FC<DesktopWorkspaceProps> = ({
         window.open('https://linkedin.com/in/arkasnata-pal-6a3682276', '_blank');
       },
     },
-    {
-      id: 'resume',
-      name: 'Resume.pdf',
-      icon: (
-        <div className="w-10 h-11 bg-[#e01b24] rounded p-1 text-[9px] font-mono font-bold text-white flex flex-col justify-between shadow">
-          <span>PDF</span>
-          <span className="text-[8px] text-red-200">.pdf</span>
-        </div>
-      ),
-      action: () => onOpenApp('pdfviewer'),
-    },
+    // {
+    //   id: 'resume',
+    //   name: 'Resume.pdf',
+    //   icon: (
+    //     <div className="w-10 h-11 bg-[#e01b24] rounded p-1 text-[9px] font-mono font-bold text-white flex flex-col justify-between shadow">
+    //       <span>PDF</span>
+    //       <span className="text-[8px] text-red-200">.pdf</span>
+    //     </div>
+    //   ),
+    //   action: () => onOpenApp('pdfviewer'),
+    // },
     {
       id: 'terminal',
       name: 'Terminal',

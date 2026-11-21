@@ -48,7 +48,7 @@ export const ActivitiesOverview: React.FC<ActivitiesOverviewProps> = ({
     { id: 'chrome', name: 'Google Chrome', icon: <YaruChromeIcon className="w-12 h-12" /> },
     { id: 'settings', name: 'Settings', icon: <YaruSettingsIcon className="w-12 h-12" /> },
     { id: 'textedit', name: 'Text Editor', icon: <YaruTextEditorIcon className="w-12 h-12" /> },
-    { id: 'imageviewer', name: 'Image Viewer', icon: <YaruImageViewerIcon className="w-12 h-12" /> },
+    { id: 'imageviewer', name: 'Gallery (Photos)', icon: <YaruImageViewerIcon className="w-12 h-12" /> },
     { id: 'music', name: 'Music', icon: <YaruMusicIcon className="w-12 h-12" /> },
   ];
 
